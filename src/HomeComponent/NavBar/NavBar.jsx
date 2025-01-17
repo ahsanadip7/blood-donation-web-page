@@ -24,7 +24,7 @@ const NavBar = () => {
         {
             user ? (<>
 
-                <NavLink to='/pendingAssignment'><li>Pending Assignments</li></NavLink>
+                <NavLink to='dashboard'><li>Dashboard</li></NavLink>
             </>
             ) : (
                 <>
