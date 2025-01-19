@@ -56,7 +56,7 @@ const ProfilePage = () => {
 
 
     return (
-        <div className="max-w-3xl mx-auto my-10 p-6 bg-white shadow-lg rounded-lg">
+        <div className="w-full mx-auto my-10 p-6 bg-white shadow-lg rounded-lg">
             {/* Avatar and Edit Button */}
             <div className="flex justify-between items-center mb-6">
                 <div className="flex items-center gap-4">

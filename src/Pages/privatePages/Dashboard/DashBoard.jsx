@@ -9,7 +9,7 @@ const DashBoard = () => {
     return (
         <div>
           
-               <div className='flex'>
+               <div className='flex w-full'>
                <DashNav></DashNav>
                <Outlet></Outlet>
                </div>
