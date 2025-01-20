@@ -22,7 +22,9 @@ const SignUp = () => {
         const district = event.target.district.value;
         const upazilla = event.target.upazilla.value;
         const bloodGroup = event.target.bloodGroup.value;
-        const userDetails = {email, name, photo, district, upazilla, bloodGroup}
+        const activeStatus = 'active'
+        const adminRol = ''
+        const userDetails = { email, name, photo, district, upazilla, bloodGroup, activeStatus,adminRol }
 
         setErrMassage('');
 
@@ -225,7 +227,38 @@ const SignUp = () => {
                         />
                     </motion.div>
 
-                    
+                    {/* blood group */}
+                    <motion.div
+                        className="form-control"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 2.1, duration: 0.8 }}
+                    >
+                        <label className="label">
+                            <span className="label-text text-lg font-medium text-gray-600">Blood Group</span>
+                        </label>
+                        <select
+                            name="bloodGroup"
+                            className="select select-bordered w-full rounded-lg border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none py-2 px-4"
+                            defaultValue="" // Set the default value to an empty string
+                            required
+                        >
+                            <option value="" disabled>
+                                Select your blood group
+                            </option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
+                    </motion.div>
+
+
+
 
                     {/* Password Input */}
                     <motion.div

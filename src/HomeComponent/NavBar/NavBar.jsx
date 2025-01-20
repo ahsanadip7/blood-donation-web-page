@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FaSignOutAlt } from 'react-icons/fa';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
@@ -6,6 +6,7 @@ import { AuthContext } from '../../AuthProvider/AuthProvider';
 const NavBar = () => {
 
     const { user, signOutUser } = useContext(AuthContext)
+    console.log(user);
     const navigate = useNavigate()
 
     const handleSignOut = () => {
@@ -18,20 +19,55 @@ const NavBar = () => {
             })
     }
 
+    const [loading, setLoading] = useState(true);
+    const [userWithRol, setUserWithRol] = useState(null);
+
+
+
+    useEffect(() => {
+        fetch('http://localhost:5000/user')
+            .then((response) => response.json())
+            .then((data) => {
+                console.log('Fetched Data:', data); // Log the fetched data
+                if (data.length > 0) {
+                    setUserWithRol(data); // Access the first object in the array
+                } else {
+                    console.error('No data found');
+                }
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error('Error fetching user data:', error);
+                setLoading(false);
+            });
+    }, []);
+
+    if (loading) {
+        return <div className="loader">Loading...</div>;
+    }
+    console.log(userWithRol);
+    const currenUser = userWithRol.find(u => u.email === user?.email)
+    console.log(currenUser);
+    const adminRol = currenUser?.adminRol
+
+
     const links = <>
         <NavLink to='/'><li>Home</li></NavLink>
         <NavLink to='/assignments'><li>Assignments</li></NavLink>
         {
-            user ? (<>
-
-                <NavLink to='dashboard'><li>Dashboard</li></NavLink>
-            </>
-            ) : (
+            (user && adminRol === "admin") ? (
                 <>
-                    <NavLink to='/login'><li>Create Assignment</li></NavLink>
+                    <NavLink to="AdminDashboard">
+                        <li>Dashboard</li>
+                    </NavLink>
                 </>
+            ) : (
+                <NavLink to="dashboard">
+                    <li>Dashboard</li>
+                </NavLink>
             )
         }
+
 
         <NavLink to='/helpPage'><li>“How to Help”</li></NavLink>
     </>
