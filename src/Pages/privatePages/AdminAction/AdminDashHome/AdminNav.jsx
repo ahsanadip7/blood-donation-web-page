@@ -74,7 +74,7 @@ const AdminNav = () => {
 
       <div className="divider m-0"></div>
 
-      <Link to='createRequest'>
+      <Link to='allDonation'>
         <li>
           <a>
             <svg
@@ -89,7 +89,7 @@ const AdminNav = () => {
                 strokeWidth="2"
                 d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            Create Request</a>
+            All Blood Donation</a>
 
 
         </li>
@@ -97,7 +97,7 @@ const AdminNav = () => {
 
       <div className="divider m-0"></div>
 
-      <Link to='myDonationReq'>
+      <Link to='contentManagement'>
         <li>
           <a>
             <svg
@@ -112,7 +112,7 @@ const AdminNav = () => {
                 strokeWidth="2"
                 d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            My Donation Requests</a>
+            Content Management</a>
 
 
         </li>

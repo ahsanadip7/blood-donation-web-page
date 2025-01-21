@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const AllUsers = () => {
     const allUsers = useLoaderData();
-    const [users, setUsers] = useState(allUsers.filter((user)=>user.adminRol !== 'admin'));
+    const [users, setUsers] = useState(allUsers.filter((user) => user.adminRol !== 'admin'));
     const [filter, setFilter] = useState('all');
     const [currentPage, setCurrentPage] = useState(1);
-    const usersPerPage = 10; // Adjust the number of users per page
+    const usersPerPage = 10;
 
     // Filter users based on status
     const filteredUsers =
@@ -46,22 +47,48 @@ const AllUsers = () => {
             });
     };
 
-    // Update user role
-    const handleMakeVolunteer = (userId) => {
+    // Toggle Volunteer status
+    const handleVolunteerToggle = (userId, isVolunteer) => {
         fetch(`http://localhost:5000/user/${userId}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ role: 'volunteer' }),
+            body: JSON.stringify({ role: isVolunteer ? 'user' : 'volunteer' }),
         })
             .then((res) => res.json())
             .then((data) => {
                 if (data.modifiedCount > 0) {
                     setUsers((prevUsers) =>
                         prevUsers.map((user) =>
-                            user._id === userId ? { ...user, role: 'volunteer' } : user
+                            user._id === userId
+                                ? { ...user, role: isVolunteer ? 'user' : 'volunteer' }
+                                : user
                         )
                     );
-                    Swal.fire('Success!', 'User role updated to Volunteer', 'success');
+                    Swal.fire(
+                        'Success!',
+                        `User role updated to ${isVolunteer ? 'User' : 'Volunteer'}`,
+                        'success'
+                    );
+                }
+            });
+    };
+
+    // Update user role to admin
+    const handleMakeAdmin = (userId) => {
+        fetch(`http://localhost:5000/user/${userId}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ adminRol: 'admin' }),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.modifiedCount > 0) {
+                    setUsers((prevUsers) =>
+                        prevUsers.map((user) =>
+                            user._id === userId ? { ...user, adminRol: 'admin' } : user
+                        )
+                    );
+                    Swal.fire('Success!', 'User role updated to Admin', 'success');
                 }
             });
     };
@@ -110,33 +137,71 @@ const AllUsers = () => {
                                 <td>{user.role}</td>
                                 <td>{user.activeStatus ? 'Active' : 'Blocked'}</td>
                                 <td>
-                                    {user.activeStatus ? (
+                                    <div className="dropdown dropdown-end">
                                         <button
-                                            className="btn btn-warning btn-sm mr-2"
-                                            onClick={() =>
-                                                handleStatusChange(user._id, false)
-                                            }
+                                            tabIndex={0}
+                                            className="btn btn-sm btn-ghost"
                                         >
-                                            Block
+                                            <i className="fas fa-ellipsis-v"></i>
                                         </button>
-                                    ) : (
-                                        <button
-                                            className="btn btn-success btn-sm mr-2"
-                                            onClick={() =>
-                                                handleStatusChange(user._id, true)
-                                            }
+                                        <ul
+                                            tabIndex={0}
+                                            className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
                                         >
-                                            Unblock
-                                        </button>
-                                    )}
-                                    {user.role !== 'volunteer' && (
-                                        <button
-                                            className="btn btn-primary btn-sm"
-                                            onClick={() => handleMakeVolunteer(user._id)}
-                                        >
-                                            Make Volunteer
-                                        </button>
-                                    )}
+                                            {user.activeStatus ? (
+                                                <li>
+                                                    <button
+                                                        onClick={() =>
+                                                            handleStatusChange(user._id, false)
+                                                        }
+                                                        className="text-warning"
+                                                    >
+                                                        Block
+                                                    </button>
+                                                </li>
+                                            ) : (
+                                                <li>
+                                                    <button
+                                                        onClick={() =>
+                                                            handleStatusChange(user._id, true)
+                                                        }
+                                                        className="text-success"
+                                                    >
+                                                        Unblock
+                                                    </button>
+                                                </li>
+                                            )}
+                                            <li>
+                                                <button
+                                                    onClick={() =>
+                                                        handleVolunteerToggle(
+                                                            user._id,
+                                                            user.role === 'volunteer'
+                                                        )
+                                                    }
+                                                    className={
+                                                        user.role === 'volunteer'
+                                                            ? 'text-danger'
+                                                            : 'text-primary'
+                                                    }
+                                                >
+                                                    {user.role === 'volunteer'
+                                                        ? 'Remove Volunteer'
+                                                        : 'Make Volunteer'}
+                                                </button>
+                                            </li>
+                                            {user.adminRol !== 'admin' && (
+                                                <li>
+                                                    <button
+                                                        onClick={() => handleMakeAdmin(user._id)}
+                                                        className="text-info"
+                                                    >
+                                                        Make Admin
+                                                    </button>
+                                                </li>
+                                            )}
+                                        </ul>
+                                    </div>
                                 </td>
                             </tr>
                         ))}

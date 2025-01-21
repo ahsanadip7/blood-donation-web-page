@@ -13,6 +13,9 @@ import MyDonationReq from "../Pages/privatePages/Dashboard/MyDonation/MyDonation
 import AdminDashboard from "../Pages/privatePages/AdminAction/AdminDashboard";
 import AdminHome from "../Pages/privatePages/AdminAction/AdminDashHome/AdminHome";
 import AllUsers from "../Pages/privatePages/AdminAction/AllUsers";
+import AllBloodDonation from "../Pages/privatePages/AdminAction/AllBloodDonation";
+import ContentManagement from "../Pages/privatePages/AdminAction/Contentmanagement";
+import AddBlog from "../Pages/privatePages/AdminAction/AdminDashHome/AddBlog";
 
 
 
@@ -103,6 +106,19 @@ const router = createBrowserRouter([
                 path: 'allUsers',
                 element: <AllUsers></AllUsers>,
                 loader: () => fetch('http://localhost:5000/user')
+            },
+            {
+                path: 'allDonation',
+                element: <AllBloodDonation></AllBloodDonation>,
+                loader: ()=>fetch('http://localhost:5000/donationRequests')
+            },
+            {
+                path:'contentManagement',
+                element:<ContentManagement></ContentManagement>
+            },
+            {
+                path: 'contentManagement/addBlog',
+                element: <AddBlog></AddBlog>
             }
         ]
     }
