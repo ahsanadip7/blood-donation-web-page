@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
-const ContentManagement = () => {
+const ContentManagementVol = ({ userRole }) => { // Assuming userRole is passed as a prop
   const [blogs, setBlogs] = useState([]);
   const [filter, setFilter] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
@@ -128,14 +128,16 @@ const ContentManagement = () => {
               <img src={blog.thumbnail} alt={blog.title} className="w-full h-32 object-cover my-2" />
               <p>{blog.content.slice(0, 100)}...</p>
               <div className="flex justify-between items-center mt-4">
-                {blog.status === 'draft' ? (
+                {/* Only show publish/unpublish and delete buttons for admins */}
+                {userRole === 'admin' && blog.status === 'draft' && (
                   <button
                     onClick={() => updateBlogStatus(blog._id, 'published')}
                     className="btn btn-success btn-sm"
                   >
                     Publish
                   </button>
-                ) : (
+                )}
+                {userRole === 'admin' && blog.status === 'published' && (
                   <button
                     onClick={() => updateBlogStatus(blog._id, 'draft')}
                     className="btn btn-warning btn-sm"
@@ -143,12 +145,14 @@ const ContentManagement = () => {
                     Unpublish
                   </button>
                 )}
-                <button
-                  onClick={() => deleteBlog(blog._id)}
-                  className="btn btn-error btn-sm"
-                >
-                  Delete
-                </button>
+                {userRole === 'admin' && (
+                  <button
+                    onClick={() => deleteBlog(blog._id)}
+                    className="btn btn-error btn-sm"
+                  >
+                    Delete
+                  </button>
+                )}
               </div>
             </div>
           ))}
@@ -181,4 +185,4 @@ const ContentManagement = () => {
   );
 };
 
-export default ContentManagement;
+export default ContentManagementVol;

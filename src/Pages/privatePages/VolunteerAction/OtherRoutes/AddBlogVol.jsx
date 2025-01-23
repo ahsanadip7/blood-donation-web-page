@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import JoditEditor from 'jodit-react';
 import Swal from 'sweetalert2';
 
-const AddBlog = () => {
+const AddBlogVol = () => {
   const editor = useRef(null);
   const [title, setTitle] = useState('');
   const [thumbnail, setThumbnail] = useState('');
@@ -96,4 +96,4 @@ const AddBlog = () => {
   );
 };
 
-export default AddBlog;
+export default AddBlogVol;

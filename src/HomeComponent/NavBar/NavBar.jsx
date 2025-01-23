@@ -8,6 +8,7 @@ const NavBar = () => {
     const { user, signOutUser } = useContext(AuthContext)
     console.log(user);
     const navigate = useNavigate()
+    console.log(user?.email);
 
     const handleSignOut = () => {
         signOutUser()
@@ -49,24 +50,31 @@ const NavBar = () => {
     const currenUser = userWithRol.find(u => u.email === user?.email)
     console.log(currenUser);
     const adminRol = currenUser?.adminRol
+    
+    const volunteerRole = currenUser?.role
+    console.log(volunteerRole);
 
 
     const links = <>
         <NavLink to='/'><li>Home</li></NavLink>
         <NavLink to='/assignments'><li>Assignments</li></NavLink>
         {
-            (user && adminRol === "admin") ? (
-                <>
-                    <NavLink to="AdminDashboard">
-                        <li>Dashboard</li>
-                    </NavLink>
-                </>
-            ) : (
-                <NavLink to="dashboard">
-                    <li>Dashboard</li>
-                </NavLink>
-            )
-        }
+  user && (
+    adminRol === "admin" ? (
+      <NavLink to="AdminDashboard">
+        <li>Dashboard</li>
+      </NavLink>
+    ) : volunteerRole === "volunteer" ? (
+      <NavLink to="VolunteerDashboard">
+        <li>Dashboard</li>
+      </NavLink>
+    ) : adminRol === "" || adminRol === "user" ? (
+      <NavLink to="dashboard">
+        <li>Dashboard</li>
+      </NavLink>
+    ) : null
+  )
+}
 
 
         <NavLink to='/helpPage'><li>“How to Help”</li></NavLink>

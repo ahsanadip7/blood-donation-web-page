@@ -23,7 +23,7 @@ const SignUp = () => {
         const upazilla = event.target.upazilla.value;
         const bloodGroup = event.target.bloodGroup.value;
         const activeStatus = 'active'
-        const adminRol = ''
+        const adminRol = 'user'
         const userDetails = { email, name, photo, district, upazilla, bloodGroup, activeStatus,adminRol }
 
         setErrMassage('');
@@ -51,7 +51,7 @@ const SignUp = () => {
                     .then((res) => res.json())
                     .then((data) => {
                         if (data.insertedId) {
-                            Swal.fire('Success!', 'Registration successful!', 'success');
+                            Swal.fire('Success!', 'Registration successful!', 'please log in');
                         }
                     })
                     .catch((error) => {
@@ -59,7 +59,7 @@ const SignUp = () => {
                         Swal.fire('Error', 'Registration failed.', 'error');
                     });
                 event.target.reset();
-                navigate('/');
+                navigate('/login');
 
                 const profile = {
                     displayName: name,

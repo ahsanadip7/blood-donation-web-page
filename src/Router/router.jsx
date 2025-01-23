@@ -16,6 +16,11 @@ import AllUsers from "../Pages/privatePages/AdminAction/AllUsers";
 import AllBloodDonation from "../Pages/privatePages/AdminAction/AllBloodDonation";
 import ContentManagement from "../Pages/privatePages/AdminAction/Contentmanagement";
 import AddBlog from "../Pages/privatePages/AdminAction/AdminDashHome/AddBlog";
+import VolunteerDash from "../Pages/privatePages/VolunteerAction/VolunteerDash";
+import VolunteerHome from "../Pages/privatePages/VolunteerAction/OtherRoutes/VolunteerHome";
+import AllBloodDonationVol from "../Pages/privatePages/VolunteerAction/OtherRoutes/AllBloodDonationVol";
+import ContentManagementVol from "../Pages/privatePages/VolunteerAction/OtherRoutes/ContentmanagementVol";
+import AddBlogVol from "../Pages/privatePages/VolunteerAction/OtherRoutes/AddBlogVol";
 
 
 
@@ -119,6 +124,50 @@ const router = createBrowserRouter([
             {
                 path: 'contentManagement/addBlog',
                 element: <AddBlog></AddBlog>
+            }
+        ]
+    },
+    {
+        path:'volunteerDashboard',
+        element: <VolunteerDash></VolunteerDash>,
+        children: [
+            {
+                index: true,
+                element: <VolunteerHome></VolunteerHome> ,
+                loader: async () => {
+                    try {
+                        const [usersResponse, donationRequestsResponse] = await Promise.all([
+                            fetch('http://localhost:5000/user'),
+                            fetch('http://localhost:5000/donationRequests'),
+                        ]);
+                
+                        if (!usersResponse.ok || !donationRequestsResponse.ok) {
+                            throw new Error('Failed to fetch data');
+                        }
+                
+                        const users = await usersResponse.json();
+                        const donationRequests = await donationRequestsResponse.json();
+                
+                        return { users, donationRequests };
+                    } catch (error) {
+                        console.error('Error fetching data:', error);
+                        throw error; // React Router will handle this and display an error page
+                    }
+                }
+                
+            },
+            {
+                path: 'allDonation',
+                element: <AllBloodDonationVol></AllBloodDonationVol>,
+                loader: ()=>fetch('http://localhost:5000/donationRequests')
+            },
+            {
+                path:'contentManagement',
+                element:<ContentManagementVol></ContentManagementVol>
+            },
+            {
+                path: 'contentManagement/addBlog',
+                element: <AddBlogVol></AddBlogVol>
             }
         ]
     }
