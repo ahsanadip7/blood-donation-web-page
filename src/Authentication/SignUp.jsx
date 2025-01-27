@@ -43,7 +43,7 @@ const SignUp = () => {
         createUser(email, password, name, photo)
             .then((result) => {
 
-                fetch('http://localhost:5000/user', {
+                fetch('https://assignment-12-server-omega-six.vercel.app/user', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(userDetails),

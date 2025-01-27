@@ -35,7 +35,7 @@ const UpdateDonation = () => {
             requestMessage: form.requestMessage.value,
         };
 
-        fetch(`http://localhost:5000/donationRequests/${_id}`, {
+        fetch(`https://assignment-12-server-omega-six.vercel.app/donationRequests/${_id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

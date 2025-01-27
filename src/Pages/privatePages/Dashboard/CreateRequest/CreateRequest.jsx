@@ -35,7 +35,7 @@ const CreateRequest = () => {
             status: 'pending', // Set status as pending by default
         };
 
-        fetch('http://localhost:5000/donationRequests', {
+        fetch('https://assignment-12-server-omega-six.vercel.app/donationRequests', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(donationRequest),

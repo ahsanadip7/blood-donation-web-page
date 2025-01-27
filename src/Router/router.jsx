@@ -21,6 +21,13 @@ import VolunteerHome from "../Pages/privatePages/VolunteerAction/OtherRoutes/Vol
 import AllBloodDonationVol from "../Pages/privatePages/VolunteerAction/OtherRoutes/AllBloodDonationVol";
 import ContentManagementVol from "../Pages/privatePages/VolunteerAction/OtherRoutes/ContentmanagementVol";
 import AddBlogVol from "../Pages/privatePages/VolunteerAction/OtherRoutes/AddBlogVol";
+import Blogs from "../HomeComponent/Main/OtherRoutes/Blogs";
+import BlogsDetails from "../HomeComponent/Main/OtherRoutes/BlogsDetails";
+import Home from "../HomeComponent/Main/Home";
+import SearchPage from "../HomeComponent/Main/SearchPage";
+import BloodDonationReq from "../HomeComponent/Main/BloodDonationReq";
+import ReqDetails from "../HomeComponent/Main/ReqDetails";
+import FundingPage from "../HomeComponent/Main/FundingPage";
 
 
 
@@ -29,6 +36,10 @@ const router = createBrowserRouter([
         path: "/",
         element: <Main></Main>,
         children: [
+            {
+                path: '/',
+                element: <Home></Home>
+            },
             {
                 path: 'login',
                 element: <Login></Login>
@@ -40,6 +51,38 @@ const router = createBrowserRouter([
             {
                 path: 'registration',
                 element: <Registration></Registration>
+            },
+            {
+                path: 'blog',
+                element: <Blogs></Blogs>,
+                loader: () => fetch('https://assignment-12-server-omega-six.vercel.app/blogs')
+            },
+            {
+                path: 'blogDetails/:id',
+                element: <BlogsDetails></BlogsDetails>,
+                loader: ({ params }) => fetch(`https://assignment-12-server-omega-six.vercel.app/blogs/${params.id}`)
+
+            },
+            {
+                path: 'donation-requests/donationDetails/:id',
+                element: <ReqDetails></ReqDetails>,
+                loader: ({ params }) => fetch(`https://assignment-12-server-omega-six.vercel.app/donationRequests/${params.id}`)
+
+            },
+            {
+                path: 'funding',
+                element: <FundingPage></FundingPage>
+            },
+
+            {
+                path: "search",
+                element: <SearchPage></SearchPage>,
+                loader: () => fetch('https://assignment-12-server-omega-six.vercel.app/donationRequests')
+            },
+            {
+                path: 'donation-requests',
+                element: <BloodDonationReq></BloodDonationReq>,
+                loader: () => fetch('https://assignment-12-server-omega-six.vercel.app/donationRequests')
             }
         ]
     },
@@ -50,22 +93,22 @@ const router = createBrowserRouter([
             {
                 index: true,
                 element: <DashboardHome></DashboardHome>,
-                loader: () => fetch('http://localhost:5000/donationRequests')
+                loader: () => fetch('https://assignment-12-server-omega-six.vercel.app/donationRequests')
             },
             {
                 path: 'profile',
                 element: <ProfilePage></ProfilePage>,
-                loader: () => fetch('http://localhost:5000/user')
+                loader: () => fetch('https://assignment-12-server-omega-six.vercel.app/user')
             },
             {
                 path: 'updateDonation/:id',
                 element: <UpdateDonation></UpdateDonation>,
-                loader: ({ params }) => fetch(`http://localhost:5000/donationRequests/${params.id}`)
+                loader: ({ params }) => fetch(`https://assignment-12-server-omega-six.vercel.app/donationRequests/${params.id}`)
             },
             {
                 path: 'viewDetails/:id',
                 element: <ViewDetails></ViewDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/donationRequests/${params.id}`)
+                loader: ({ params }) => fetch(`https://assignment-12-server-omega-six.vercel.app/donationRequests/${params.id}`)
             },
             {
                 path: 'createRequest',
@@ -74,7 +117,7 @@ const router = createBrowserRouter([
             {
                 path:'myDonationReq',
                 element: <MyDonationReq></MyDonationReq>,
-                loader: () => fetch('http://localhost:5000/donationRequests')
+                loader: () => fetch('https://assignment-12-server-omega-six.vercel.app/donationRequests')
             }
         ]
     },
@@ -88,8 +131,8 @@ const router = createBrowserRouter([
                 loader: async () => {
                     try {
                         const [usersResponse, donationRequestsResponse] = await Promise.all([
-                            fetch('http://localhost:5000/user'),
-                            fetch('http://localhost:5000/donationRequests'),
+                            fetch('https://assignment-12-server-omega-six.vercel.app/user'),
+                            fetch('https://assignment-12-server-omega-six.vercel.app/donationRequests'),
                         ]);
                 
                         if (!usersResponse.ok || !donationRequestsResponse.ok) {
@@ -110,16 +153,18 @@ const router = createBrowserRouter([
             {
                 path: 'allUsers',
                 element: <AllUsers></AllUsers>,
-                loader: () => fetch('http://localhost:5000/user')
+                loader: () => fetch('https://assignment-12-server-omega-six.vercel.app/user')
             },
             {
                 path: 'allDonation',
                 element: <AllBloodDonation></AllBloodDonation>,
-                loader: ()=>fetch('http://localhost:5000/donationRequests')
+                loader: ()=>fetch('https://assignment-12-server-omega-six.vercel.app/donationRequests')
             },
             {
                 path:'contentManagement',
-                element:<ContentManagement></ContentManagement>
+                element:<ContentManagement></ContentManagement>,
+                loader: ()=>fetch('https://assignment-12-server-omega-six.vercel.app/blogs')
+
             },
             {
                 path: 'contentManagement/addBlog',
@@ -137,8 +182,8 @@ const router = createBrowserRouter([
                 loader: async () => {
                     try {
                         const [usersResponse, donationRequestsResponse] = await Promise.all([
-                            fetch('http://localhost:5000/user'),
-                            fetch('http://localhost:5000/donationRequests'),
+                            fetch('https://assignment-12-server-omega-six.vercel.app/user'),
+                            fetch('https://assignment-12-server-omega-six.vercel.app/donationRequests'),
                         ]);
                 
                         if (!usersResponse.ok || !donationRequestsResponse.ok) {
@@ -159,12 +204,20 @@ const router = createBrowserRouter([
             {
                 path: 'allDonation',
                 element: <AllBloodDonationVol></AllBloodDonationVol>,
-                loader: ()=>fetch('http://localhost:5000/donationRequests')
+                loader: ()=>fetch('https://assignment-12-server-omega-six.vercel.app/donationRequests')
             },
             {
-                path:'contentManagement',
-                element:<ContentManagementVol></ContentManagementVol>
-            },
+                path: 'contentManagement',
+                element: <ContentManagementVol />,
+                loader: async () => {
+                  const res = await fetch('https://assignment-12-server-omega-six.vercel.app/blogs');
+                  if (!res.ok) {
+                    throw new Error('Failed to fetch blogs');
+                  }
+                  const blogs = await res.json();
+                  return blogs;
+                }
+              },              
             {
                 path: 'contentManagement/addBlog',
                 element: <AddBlogVol></AddBlogVol>

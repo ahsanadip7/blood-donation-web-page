@@ -29,7 +29,7 @@ const AddBlogVol = () => {
     };
 
     try {
-      const res = await fetch('http://localhost:5000/blogs', {
+      const res = await fetch('https://assignment-12-server-omega-six.vercel.app/blogs', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(blogData),

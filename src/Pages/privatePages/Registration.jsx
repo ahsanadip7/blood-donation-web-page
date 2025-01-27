@@ -71,7 +71,7 @@ const BloodDonationRegistration = () => {
 
     console.log(registrationData);
 
-    fetch('http://localhost:5000/bloodDonor', {
+    fetch('https://assignment-12-server-omega-six.vercel.app/bloodDonor', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(registrationData),

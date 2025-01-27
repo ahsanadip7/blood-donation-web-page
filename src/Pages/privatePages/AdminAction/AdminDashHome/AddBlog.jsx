@@ -13,33 +13,32 @@ const AddBlog = () => {
   // Handle form submission
   const handleCreateBlog = async (e) => {
     e.preventDefault();
-
-    // Simple validation
+  
     if (!title || !thumbnail || !content) {
       Swal.fire('Error', 'All fields are required!', 'error');
       return;
     }
-
-    // Blog data to send to the server
+  
     const blogData = {
       title,
       thumbnail,
       content,
-      status: 'draft', // Ensure the blog is created as a draft
+      status: 'draft',
     };
-
+  
     try {
-      const res = await fetch('http://localhost:5000/blogs', {
+      const res = await fetch('https://assignment-12-server-omega-six.vercel.app/blogs', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(blogData),
       });
-
+  
       const data = await res.json();
-
+  
       if (data.insertedId) {
         Swal.fire('Success', 'Blog created successfully!', 'success');
-        navigate('/AdminDashboard/contentManagement');
+        // Navigate with replace to reload the loader
+        navigate('/AdminDashboard/contentManagement', { replace: true });
       } else {
         Swal.fire('Error', 'Failed to create blog!', 'error');
       }
@@ -47,7 +46,7 @@ const AddBlog = () => {
       Swal.fire('Error', 'An error occurred while creating the blog!', 'error');
     }
   };
-
+  
   return (
     <div className="p-6 bg-gray-100 w-full">
       <h1 className="text-2xl font-bold mb-4">Add Blog</h1>

@@ -17,7 +17,7 @@ const AllBloodDonation = () => {
 
     // Update donation status
     const handleDonationStatusChange = (donationId, newStatus) => {
-        fetch(`http://localhost:5000/donationRequests/${donationId}`, {
+        fetch(`https://assignment-12-server-omega-six.vercel.app/donationRequests/${donationId}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ status: newStatus }),

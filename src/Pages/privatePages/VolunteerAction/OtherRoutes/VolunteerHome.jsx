@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../../AuthProvider/AuthProvider';
 import { useLoaderData } from 'react-router-dom';
-import { FaUsers, FaHeart, FaHandHoldingHeart } from 'react-icons/fa'; 
+import { FaUsers, FaHeart, FaHandHoldingHeart, FaHandHoldingUsd } from 'react-icons/fa'; 
 
 const VolunteerHome = () => {
     const { user } = useContext(AuthContext);
     const data = useLoaderData();
 
-    const { users = [], donationRequests = [] } = data || {};
+    const { users = [], donationRequests = [], totalFunds = 0 } = data || {};
     return (
          <div className="w-full bg-gray-100 pl-2 p-8">
                     {/* Welcome Section */}
@@ -35,6 +35,13 @@ const VolunteerHome = () => {
                             <h2 className="text-2xl font-semibold">{donationRequests.length}</h2>
                             <p className="text-gray-600">Total Blood Donation Requests</p>
                         </div>
+
+                         {/* Total Funds Card */}
+                <div className="bg-white shadow-md rounded-lg p-6 text-center flex flex-col items-center">
+                    <FaHandHoldingUsd className="text-5xl text-green-600 mb-4" />
+                    <h2 className="text-3xl font-bold">${totalFunds.toFixed(2)}</h2>
+                    <p className="text-gray-600">Total Funds Collected</p>
+                </div>
         
                         {/* Placeholder for Additional Statistics */}
                         <div className="bg-white shadow-md rounded-lg p-6 flex flex-col items-center text-center">

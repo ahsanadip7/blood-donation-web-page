@@ -1,43 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const ContentManagement = () => {
-  const [blogs, setBlogs] = useState([]);
-  const [filter, setFilter] = useState('all');
-  const [currentPage, setCurrentPage] = useState(1);
-  const blogsPerPage = 5;
+    const allBlogs = useLoaderData(); // Data provided by the loader
+    const [blogs, setBlogs] = useState(allBlogs || []); // Initialize state with loader data
+    const [filter, setFilter] = useState('all');
+    const [currentPage, setCurrentPage] = useState(1);
+    const blogsPerPage = 5;
 
-  // Fetch blogs from the server
-  const fetchBlogs = async () => {
-    try {
-      const res = await fetch('http://localhost:5000/blogs');
-      const data = await res.json();
-      setBlogs(data);
-    } catch (error) {
-      Swal.fire('Error', 'Failed to fetch blogs!', 'error');
-    }
-  };
+    // Optional: Log for debugging
+    console.log(blogs);
 
-  useEffect(() => {
-    fetchBlogs();
-  }, []);
+    // Derived state: Filtered blogs
+    const filteredBlogs = blogs.filter((blog) =>
+        filter === 'all' ? true : blog.status === filter
+    );
 
-  // Filter blogs based on draft or published status
-  const filteredBlogs = blogs.filter((blog) =>
-    filter === 'all' ? true : blog.status === filter
-  );
+    // Derived state: Paginated blogs
+    const indexOfLastBlog = currentPage * blogsPerPage;
+    const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
+    const currentBlogs = filteredBlogs.slice(indexOfFirstBlog, indexOfLastBlog);
 
-  // Pagination logic
-  const indexOfLastBlog = currentPage * blogsPerPage;
-  const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
-  const currentBlogs = filteredBlogs.slice(indexOfFirstBlog, indexOfLastBlog);
-  const totalPages = Math.ceil(filteredBlogs.length / blogsPerPage);
+    // Total Pages for pagination
+    const totalPages = Math.ceil(filteredBlogs.length / blogsPerPage);
 
   // Handle publish and unpublish
   const updateBlogStatus = async (id, status) => {
     try {
-      const res = await fetch(`http://localhost:5000/blogs/${id}`, {
+      const res = await fetch(`https://assignment-12-server-omega-six.vercel.app/blogs/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status }),
@@ -73,7 +64,7 @@ const ContentManagement = () => {
 
     if (confirm.isConfirmed) {
       try {
-        const res = await fetch(`http://localhost:5000/blogs/${id}`, { method: 'DELETE' });
+        const res = await fetch(`https://assignment-12-server-omega-six.vercel.app/blogs/${id}`, { method: 'DELETE' });
 
         if (!res.ok) throw new Error('Failed to delete blog!');
 
@@ -122,11 +113,11 @@ const ContentManagement = () => {
       {/* Display Blogs */}
       {currentBlogs.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {currentBlogs.map((blog) => (
-            <div key={blog._id} className="card bg-white shadow-md p-4">
-              <h2 className="text-xl font-bold">{blog.title}</h2>
-              <img src={blog.thumbnail} alt={blog.title} className="w-full h-32 object-cover my-2" />
-              <p>{blog.content.slice(0, 100)}...</p>
+           {blogs.map((blog) => (
+            <div key={blog._id}>
+                <img src={blog.thumbnail} alt="" />
+              <h2>{blog.title}</h2>
+              <p>{blog.content}</p>
               <div className="flex justify-between items-center mt-4">
                 {blog.status === 'draft' ? (
                   <button

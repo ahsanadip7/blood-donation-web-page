@@ -3,10 +3,10 @@ import { useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const AllBloodDonationVol = () => {
-    const donations = useLoaderData()
+    const donations = useLoaderData();
     const [donationRequests, setDonationRequests] = useState(donations);
     const [currentPage, setCurrentPage] = useState(1);
-    const donationsPerPage = 10;
+    const donationsPerPage = 5; // Display 5 data per page
 
     // Pagination logic
     const totalPages = Math.ceil(donationRequests.length / donationsPerPage);
@@ -15,10 +15,9 @@ const AllBloodDonationVol = () => {
         currentPage * donationsPerPage
     );
 
-    // Update donation status (restricted to volunteers)
-       // Update donation status
-       const handleDonationStatusChange = (donationId, newStatus) => {
-        fetch(`http://localhost:5000/donationRequests/${donationId}`, {
+    // Update donation status
+    const handleDonationStatusChange = (donationId, newStatus) => {
+        fetch(`https://assignment-12-server-omega-six.vercel.app/donationRequests/${donationId}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ status: newStatus }),
@@ -66,7 +65,6 @@ const AllBloodDonationVol = () => {
                                 <td>{donation.bloodGroup}</td>
                                 <td>{donation.status}</td>
                                 <td>
-                                    {/* Restricted to status update only */}
                                     <select
                                         value={donation.status}
                                         onChange={(e) =>

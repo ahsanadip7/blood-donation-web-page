@@ -25,7 +25,7 @@ const AllUsers = () => {
 
     // Update user status
     const handleStatusChange = (userId, newStatus) => {
-        fetch(`http://localhost:5000/user/${userId}`, {
+        fetch(`https://assignment-12-server-omega-six.vercel.app/user/${userId}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ activeStatus: newStatus }),
@@ -49,7 +49,7 @@ const AllUsers = () => {
 
     // Toggle Volunteer status
     const handleVolunteerToggle = (userId, isVolunteer) => {
-        fetch(`http://localhost:5000/user/${userId}`, {
+        fetch(`https://assignment-12-server-omega-six.vercel.app/user/${userId}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ role: isVolunteer ? 'user' : 'volunteer' }),
@@ -75,7 +75,7 @@ const AllUsers = () => {
 
     // Update user role to admin
     const handleMakeAdmin = (userId) => {
-        fetch(`http://localhost:5000/user/${userId}`, {
+        fetch(`https://assignment-12-server-omega-six.vercel.app/user/${userId}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ adminRol: 'admin' }),
