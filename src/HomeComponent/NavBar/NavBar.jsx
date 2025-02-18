@@ -88,12 +88,12 @@ const NavBar = () => {
             </div>
             <a className="text-2xl font-bold">Blood Donation Application</a>
             {/* Dark Mode Toggle Button */}
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg text-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition"
-            >
-              {isDarkMode ? <FaSun className="text-yellow-400" /> : <FaMoon className="text-gray-900" />}
-            </button>
+        <button
+          onClick={toggleTheme}
+          className="p-2 rounded-lg text-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition"
+        >
+          {isDarkMode ? <FaSun className="text-yellow-400" /> : <FaMoon className="text-gray-900" />}
+        </button>
           </div>
   
           {/* Navigation Links for Desktop */}
@@ -110,7 +110,8 @@ const NavBar = () => {
                 <div className="relative group">
                   <img className="w-10 h-10 rounded-full border-2 border-white cursor-pointer"
                     src={user.photoURL || "https://via.placeholder.com/40"} 
-                    alt={`${user.displayName || "User"}'s Profile`}/>
+                    alt={`${user.displayName || "User"}'s Profile`}
+                  />
                   <div className="absolute z-10 w-48 origin-top-right rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden group-hover:block right-0">
                     <div className="py-1 text-gray-700" role="menu">
                       {isAdmin && <NavLink to="/AdminDashboard" className="block px-4 py-2 text-sm hover:bg-gray-100">Admin Dashboard</NavLink>}
@@ -135,12 +136,11 @@ const NavBar = () => {
       </div>
   
       {/* Padding to prevent content from being hidden under the fixed navbar */}
-      <div className="pt-[80px]"> {/* Adjust padding to ensure content is not hidden */}
+      <div className="pt-[80px]">
         {/* Page content goes here */}
       </div>
     </>
   );
-  
   
 };
 

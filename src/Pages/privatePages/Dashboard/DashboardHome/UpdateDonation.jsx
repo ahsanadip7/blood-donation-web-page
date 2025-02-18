@@ -56,125 +56,144 @@ const UpdateDonation = () => {
     };
 
     return (
-        <div className="max-w-4xl mx-auto p-8 bg-white shadow-md rounded-lg">
-            <h2 className="text-2xl font-bold text-indigo-700 mb-6">Update Donation Request</h2>
-            <form onSubmit={handleUpdate}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label className="block text-gray-700 font-medium mb-2">Recipient Name</label>
-                        <input
-                            type="text"
-                            name="recipientName"
-                            defaultValue={recipientName}
-                            className="input input-bordered w-full"
-                            required
-                        />
-                    </div>
-
-                    <div>
-                        <label className="block text-gray-700 font-medium mb-2">Recipient District</label>
-                        <input
-                            type="text"
-                            name="recipientDistrict"
-                            defaultValue={recipientDistrict}
-                            className="input input-bordered w-full"
-                            required
-                        />
-                    </div>
-
-                    <div>
-                        <label className="block text-gray-700 font-medium mb-2">Recipient Upazila</label>
-                        <input
-                            type="text"
-                            name="recipientUpazila"
-                            defaultValue={recipientUpazila}
-                            className="input input-bordered w-full"
-                            required
-                        />
-                    </div>
-
-                    <div>
-                        <label className="block text-gray-700 font-medium mb-2">Hospital Name</label>
-                        <input
-                            type="text"
-                            name="hospitalName"
-                            defaultValue={hospitalName}
-                            className="input input-bordered w-full"
-                            required
-                        />
-                    </div>
-
-                    <div>
-                        <label className="block text-gray-700 font-medium mb-2">Full Address</label>
-                        <input
-                            type="text"
-                            name="fullAddress"
-                            defaultValue={fullAddress}
-                            className="input input-bordered w-full"
-                            required
-                        />
-                    </div>
-
-                    <div>
-                        <label className="block text-gray-700 font-medium mb-2">Blood Group</label>
-                        <select
-                            name="bloodGroup"
-                            defaultValue={bloodGroup}
-                            className="select select-bordered w-full"
-                            required
-                        >
-                            <option value="A+">A+</option>
-                            <option value="A-">A-</option>
-                            <option value="B+">B+</option>
-                            <option value="B-">B-</option>
-                            <option value="AB+">AB+</option>
-                            <option value="AB-">AB-</option>
-                            <option value="O+">O+</option>
-                            <option value="O-">O-</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label className="block text-gray-700 font-medium mb-2">Donation Date</label>
-                        <input
-                            type="date"
-                            name="donationDate"
-                            defaultValue={donationDate}
-                            className="input input-bordered w-full"
-                            required
-                        />
-                    </div>
-
-                    <div>
-                        <label className="block text-gray-700 font-medium mb-2">Donation Time</label>
-                        <input
-                            type="time"
-                            name="donationTime"
-                            defaultValue={donationTime}
-                            className="input input-bordered w-full"
-                            required
-                        />
-                    </div>
-
-                    <div className="col-span-2">
-                        <label className="block text-gray-700 font-medium mb-2">Request Message</label>
-                        <textarea
-                            name="requestMessage"
-                            defaultValue={requestMessage}
-                            className="textarea textarea-bordered w-full"
-                            rows="4"
-                            required
-                        ></textarea>
-                    </div>
-                </div>
-
-                <div className="mt-6 text-right">
-                    <button type="submit" className="btn btn-primary">
-                        Update Request
-                    </button>
-                </div>
-            </form>
-        </div>
+        <div className="max-w-4xl mx-auto p-8 bg-white dark:bg-gray-800 shadow-md rounded-lg">
+        <h2 className="text-2xl font-bold text-indigo-700 dark:text-indigo-300 mb-6">Update Donation Request</h2>
+        <form onSubmit={handleUpdate}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Recipient Name */}
+            <div>
+              <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">Recipient Name</label>
+              <input
+                type="text"
+                name="recipientName"
+                value={recipientName}
+                onChange={(e) => setRecipientName(e.target.value)}
+                className="input input-bordered w-full dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                required
+              />
+            </div>
+  
+            {/* Recipient District */}
+            <div>
+              <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">Recipient District</label>
+              <input
+                type="text"
+                name="recipientDistrict"
+                value={recipientDistrict}
+                onChange={(e) => setRecipientDistrict(e.target.value)}
+                className="input input-bordered w-full dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                required
+              />
+            </div>
+  
+            {/* Recipient Upazila */}
+            <div>
+              <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">Recipient Upazila</label>
+              <input
+                type="text"
+                name="recipientUpazila"
+                value={recipientUpazila}
+                onChange={(e) => setRecipientUpazila(e.target.value)}
+                className="input input-bordered w-full dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                required
+              />
+            </div>
+  
+            {/* Hospital Name */}
+            <div>
+              <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">Hospital Name</label>
+              <input
+                type="text"
+                name="hospitalName"
+                value={hospitalName}
+                onChange={(e) => setHospitalName(e.target.value)}
+                className="input input-bordered w-full dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                required
+              />
+            </div>
+  
+            {/* Full Address */}
+            <div>
+              <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">Full Address</label>
+              <input
+                type="text"
+                name="fullAddress"
+                value={fullAddress}
+                onChange={(e) => setFullAddress(e.target.value)}
+                className="input input-bordered w-full dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                required
+              />
+            </div>
+  
+            {/* Blood Group */}
+            <div>
+              <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">Blood Group</label>
+              <select
+                name="bloodGroup"
+                value={bloodGroup}
+                onChange={(e) => setBloodGroup(e.target.value)}
+                className="select select-bordered w-full dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                required
+              >
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+              </select>
+            </div>
+  
+            {/* Donation Date */}
+            <div>
+              <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">Donation Date</label>
+              <input
+                type="date"
+                name="donationDate"
+                value={donationDate}
+                onChange={(e) => setDonationDate(e.target.value)}
+                className="input input-bordered w-full dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                required
+              />
+            </div>
+  
+            {/* Donation Time */}
+            <div>
+              <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">Donation Time</label>
+              <input
+                type="time"
+                name="donationTime"
+                value={donationTime}
+                onChange={(e) => setDonationTime(e.target.value)}
+                className="input input-bordered w-full dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                required
+              />
+            </div>
+  
+            {/* Request Message */}
+            <div className="col-span-2">
+              <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">Request Message</label>
+              <textarea
+                name="requestMessage"
+                value={requestMessage}
+                onChange={(e) => setRequestMessage(e.target.value)}
+                className="textarea textarea-bordered w-full dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                rows="4"
+                required
+              ></textarea>
+            </div>
+          </div>
+  
+          {/* Update Button */}
+          <div className="mt-6 text-right">
+            <button type="submit" className="btn btn-primary bg-indigo-600 hover:bg-indigo-700 text-white dark:bg-indigo-500 dark:hover:bg-indigo-600">
+              Update Request
+            </button>
+          </div>
+        </form>
+      </div>
     );
 };
 

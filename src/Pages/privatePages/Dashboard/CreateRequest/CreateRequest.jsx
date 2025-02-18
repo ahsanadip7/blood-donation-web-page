@@ -1,5 +1,4 @@
-import React, { useContext, useState } from 'react';
-
+import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
@@ -19,6 +18,8 @@ const CreateRequest = () => {
         donationTime: '',
         requestMessage: '',
     });
+
+
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -44,32 +45,31 @@ const CreateRequest = () => {
             .then((data) => {
                 if (data.insertedId) {
                     Swal.fire({
-                          title: "Request Created",
-                          text: "Your profile information has been updated successfully!",
-                          icon: "success",
-                          confirmButtonText: "OK",
-                        });
+                        title: 'Request Created',
+                        text: 'Your donation request has been created successfully!',
+                        icon: 'success',
+                        confirmButtonText: 'OK',
+                    });
                     navigate('/dashboard');
                 }
             })
             .catch((error) => console.error('Error creating donation request:', error));
     };
 
-
     return (
-        <div className="bg-gray-100 min-h-screen w-full flex items-center justify-center px-4">
+        <div className={`min-h-screen w-full flex items-center justify-center px-4 bg-gray-100 dark:bg-gray-800`}>
             <form
                 onSubmit={handleSubmit}
-                className="bg-white shadow-md rounded px-8 pt-6 pb-8 w-full "
+                className="bg-white dark:bg-gray-900 shadow-md rounded px-8 pt-6 pb-8 w-full"
             >
-                <h2 className="text-3xl font-bold mb-6 text-center text-indigo-600">
+                <h2 className="text-3xl font-bold mb-6 text-center text-indigo-600 dark:text-indigo-300">
                     Create Donation Request
                 </h2>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     {/* Requester Name (Read-Only) */}
                     <div>
-                        <label className="block text-gray-700 text-sm font-bold mb-2">
+                        <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
                             Requester Name
                         </label>
                         <input
@@ -77,13 +77,13 @@ const CreateRequest = () => {
                             name="requesterName"
                             value={user?.displayName || ''}
                             readOnly
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-100 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline"
                         />
                     </div>
 
                     {/* Requester Email (Read-Only) */}
                     <div>
-                        <label className="block text-gray-700 text-sm font-bold mb-2">
+                        <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
                             Requester Email
                         </label>
                         <input
@@ -91,13 +91,13 @@ const CreateRequest = () => {
                             name="requesterEmail"
                             value={user?.email || ''}
                             readOnly
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-100 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline"
                         />
                     </div>
 
                     {/* Recipient Name */}
                     <div>
-                        <label className="block text-gray-700 text-sm font-bold mb-2">
+                        <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
                             Recipient Name
                         </label>
                         <input
@@ -106,13 +106,13 @@ const CreateRequest = () => {
                             value={formData.recipientName}
                             onChange={handleInputChange}
                             required
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
                     </div>
 
                     {/* Recipient District */}
                     <div>
-                        <label className="block text-gray-700 text-sm font-bold mb-2">
+                        <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
                             Recipient District
                         </label>
                         <select
@@ -120,7 +120,7 @@ const CreateRequest = () => {
                             value={formData.recipientDistrict}
                             onChange={handleInputChange}
                             required
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         >
                             <option value="">Select District</option>
                             <option value="Dhaka">Dhaka</option>
@@ -132,7 +132,7 @@ const CreateRequest = () => {
 
                     {/* Recipient Upazila */}
                     <div>
-                        <label className="block text-gray-700 text-sm font-bold mb-2">
+                        <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
                             Recipient Upazila
                         </label>
                         <select
@@ -140,7 +140,7 @@ const CreateRequest = () => {
                             value={formData.recipientUpazila}
                             onChange={handleInputChange}
                             required
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         >
                             <option value="">Select Upazila</option>
                             <option value="Savar">Savar</option>
@@ -152,7 +152,7 @@ const CreateRequest = () => {
 
                     {/* Hospital Name */}
                     <div>
-                        <label className="block text-gray-700 text-sm font-bold mb-2">
+                        <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
                             Hospital Name
                         </label>
                         <input
@@ -161,13 +161,13 @@ const CreateRequest = () => {
                             value={formData.hospitalName}
                             onChange={handleInputChange}
                             required
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
                     </div>
 
                     {/* Full Address */}
                     <div>
-                        <label className="block text-gray-700 text-sm font-bold mb-2">
+                        <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
                             Full Address
                         </label>
                         <input
@@ -176,13 +176,13 @@ const CreateRequest = () => {
                             value={formData.fullAddress}
                             onChange={handleInputChange}
                             required
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
                     </div>
 
                     {/* Blood Group */}
                     <div>
-                        <label className="block text-gray-700 text-sm font-bold mb-2">
+                        <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
                             Blood Group
                         </label>
                         <select
@@ -190,7 +190,7 @@ const CreateRequest = () => {
                             value={formData.bloodGroup}
                             onChange={handleInputChange}
                             required
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         >
                             <option value="">Select Blood Group</option>
                             <option value="A+">A+</option>
@@ -206,7 +206,7 @@ const CreateRequest = () => {
 
                     {/* Donation Date */}
                     <div>
-                        <label className="block text-gray-700 text-sm font-bold mb-2">
+                        <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
                             Donation Date
                         </label>
                         <input
@@ -215,13 +215,13 @@ const CreateRequest = () => {
                             value={formData.donationDate}
                             onChange={handleInputChange}
                             required
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
                     </div>
 
                     {/* Donation Time */}
                     <div>
-                        <label className="block text-gray-700 text-sm font-bold mb-2">
+                        <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
                             Donation Time
                         </label>
                         <input
@@ -230,13 +230,13 @@ const CreateRequest = () => {
                             value={formData.donationTime}
                             onChange={handleInputChange}
                             required
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
                     </div>
 
                     {/* Request Message */}
                     <div className="col-span-1 sm:col-span-2">
-                        <label className="block text-gray-700 text-sm font-bold mb-2">
+                        <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
                             Request Message
                         </label>
                         <textarea
@@ -244,7 +244,7 @@ const CreateRequest = () => {
                             value={formData.requestMessage}
                             onChange={handleInputChange}
                             required
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         ></textarea>
                     </div>
                 </div>

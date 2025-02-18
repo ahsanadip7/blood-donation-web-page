@@ -33,19 +33,19 @@ const MyDonationReq = () => {
     };
 
     return (
-        <div className="bg-gray-100 p-6 w-full">
-            <div className="bg-white shadow-md p-6 rounded-lg">
-                <h2 className="text-2xl font-bold text-indigo-600 mb-4">
+        <div className="bg-gray-100 dark:bg-gray-900 p-6 w-full">
+            <div className="bg-white dark:bg-gray-800 shadow-md p-6 rounded-lg">
+                <h2 className="text-2xl font-bold text-indigo-600 dark:text-indigo-400 mb-4">
                     My Donation Requests
                 </h2>
 
                 {/* Filter Dropdown */}
                 <div className="mb-4">
-                    <label className="block mb-2 font-medium text-gray-700">
+                    <label className="block mb-2 font-medium text-gray-700 dark:text-gray-300">
                         Filter by Status:
                     </label>
                     <select
-                        className="w-full border rounded p-2"
+                        className="w-full border rounded p-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700"
                         value={filterStatus}
                         onChange={handleFilterChange}
                     >
@@ -58,9 +58,9 @@ const MyDonationReq = () => {
                 </div>
 
                 {/* Requests Table */}
-                <table className="table-auto w-full border-collapse border border-gray-300">
+                <table className="table-auto w-full border-collapse border border-gray-300 dark:border-gray-600">
                     <thead>
-                        <tr className="bg-indigo-100">
+                        <tr className="bg-indigo-100 dark:bg-indigo-800">
                             <th className="border border-gray-300 px-4 py-2">#</th>
                             <th className="border border-gray-300 px-4 py-2">Recipient Name</th>
                             <th className="border border-gray-300 px-4 py-2">Location</th>
@@ -74,7 +74,7 @@ const MyDonationReq = () => {
                     <tbody>
                         {paginatedRequests.length > 0 ? (
                             paginatedRequests.map((req, index) => (
-                                <tr key={req._id} className="text-center">
+                                <tr key={req._id} className="text-center bg-white dark:bg-gray-800">
                                     <td className="border border-gray-300 px-4 py-2">
                                         {startIndex + index + 1}
                                     </td>
@@ -105,7 +105,7 @@ const MyDonationReq = () => {
                             <tr>
                                 <td
                                     colSpan="8"
-                                    className="text-center text-gray-500 py-4"
+                                    className="text-center text-gray-500 py-4 dark:text-gray-400"
                                 >
                                     No requests found.
                                 </td>
@@ -120,22 +120,22 @@ const MyDonationReq = () => {
                         <button
                             className={`px-4 py-2 border rounded-l ${
                                 currentPage === 1
-                                    ? 'bg-gray-300'
-                                    : 'bg-indigo-500 text-white'
+                                    ? 'bg-gray-300 dark:bg-gray-700'
+                                    : 'bg-indigo-500 text-white dark:bg-indigo-600'
                             }`}
                             disabled={currentPage === 1}
                             onClick={() => setCurrentPage((prev) => prev - 1)}
                         >
                             Prev
                         </button>
-                        <span className="px-4 py-2 border-t border-b">
+                        <span className="px-4 py-2 border-t border-b dark:border-gray-600">
                             Page {currentPage} of {totalPages}
                         </span>
                         <button
                             className={`px-4 py-2 border rounded-r ${
                                 currentPage === totalPages
-                                    ? 'bg-gray-300'
-                                    : 'bg-indigo-500 text-white'
+                                    ? 'bg-gray-300 dark:bg-gray-700'
+                                    : 'bg-indigo-500 text-white dark:bg-indigo-600'
                             }`}
                             disabled={currentPage === totalPages}
                             onClick={() => setCurrentPage((prev) => prev + 1)}
