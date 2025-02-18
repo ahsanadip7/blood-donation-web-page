@@ -53,7 +53,7 @@ const FundingPage = () => {
     const currentFunds = funds.slice(indexOfFirstFund, indexOfLastFund);
 
     return (
-        <div className="p-5">
+        <div className="p-5 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100">
             <h1 className="text-3xl font-bold mb-5 text-center">Funding Page</h1>
 
             <div className="flex justify-between items-center mb-5">
@@ -66,29 +66,29 @@ const FundingPage = () => {
                     amount={5000} // Amount in cents (i.e., $50)
                     currency="USD"
                 >
-                    <button className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700">
+                    <button className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400">
                         Give Fund
                     </button>
                 </StripeCheckout>
             </div>
 
             {/* Loading indicator */}
-            {loading && <p>Loading funds...</p>}
+            {loading && <p className="text-center text-gray-600 dark:text-gray-300">Loading funds...</p>}
 
             {/* Table for displaying funds */}
-            <div className="overflow-x-auto">
-                <table className="table-auto w-full border-collapse border border-gray-200">
-                    <thead>
-                        <tr className="bg-gray-100">
-                            <th className="border border-gray-300 px-4 py-2">User Name</th>
-                            <th className="border border-gray-300 px-4 py-2">Email</th>
-                            <th className="border border-gray-300 px-4 py-2">Fund Amount</th>
-                            <th className="border border-gray-300 px-4 py-2">Funding Date</th>
+            <div className="overflow-x-auto mt-5">
+                <table className="table-auto w-full border-collapse border border-gray-200 dark:border-gray-700">
+                    <thead className="bg-gray-100 dark:bg-gray-700">
+                        <tr>
+                            <th className="border border-gray-300 px-4 py-2 text-left">User Name</th>
+                            <th className="border border-gray-300 px-4 py-2 text-left">Email</th>
+                            <th className="border border-gray-300 px-4 py-2 text-left">Fund Amount</th>
+                            <th className="border border-gray-300 px-4 py-2 text-left">Funding Date</th>
                         </tr>
                     </thead>
                     <tbody>
                         {currentFunds.map((fund) => (
-                            <tr key={fund._id}>
+                            <tr key={fund._id} className="hover:bg-gray-100 dark:hover:bg-gray-700">
                                 <td className="border border-gray-300 px-4 py-2">{fund.userName}</td>
                                 <td className="border border-gray-300 px-4 py-2">{fund.userEmail}</td>
                                 <td className="border border-gray-300 px-4 py-2">${fund.fundAmount.toFixed(2)}</td>

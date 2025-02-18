@@ -75,13 +75,15 @@ const Home = () => {
 
             {/* Contact Us Section */}
             <motion.div
-                className="p-5 bg-gray-100"
+                className="p-5 bg-gray-100 dark:bg-gray-800 transition-colors duration-300"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1 }}
             >
-                <h2 className="text-3xl font-bold text-center mb-6">Contact Us</h2>
+                <h2 className="text-3xl font-bold text-center mb-6 text-gray-800 dark:text-white">
+                    Contact Us
+                </h2>
                 <div className="max-w-2xl mx-auto">
                     {/* Contact Form */}
                     <motion.form
@@ -94,21 +96,21 @@ const Home = () => {
                         <input
                             type="text"
                             placeholder="Your Name"
-                            className="w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
+                            className="w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:focus:ring-blue-500"
                         />
                         <input
                             type="email"
                             placeholder="Your Email"
-                            className="w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
+                            className="w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:focus:ring-blue-500"
                         />
                         <textarea
                             rows="5"
                             placeholder="Your Message"
-                            className="w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
+                            className="w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:focus:ring-blue-500"
                         ></textarea>
                         <button
                             type="submit"
-                            className="px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 shadow-lg"
+                            className="px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 shadow-lg dark:bg-green-800 dark:hover:bg-green-700"
                         >
                             Send Message
                         </button>
@@ -122,12 +124,16 @@ const Home = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
-                        <p className="text-lg font-semibold">
-                            Call Us: <a href="tel:+123456789" className="text-blue-600">+1 (234) 567-89</a>
+                        <p className="text-lg font-semibold text-gray-800 dark:text-white">
+                            Call Us:{" "}
+                            <a href="tel:+123456789" className="text-blue-600 dark:text-blue-400">
+                                +1 (234) 567-89
+                            </a>
                         </p>
                     </motion.div>
                 </div>
             </motion.div>
+
         </div>
     );
 };

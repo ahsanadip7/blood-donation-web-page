@@ -1,3 +1,38 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* index.css */
+html {
+    transition: background-color 0.3s ease;
+}
+
+body {
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.dark body {
+    background-color: #1f2937; /* Dark background for body */
+    color: #f9fafb; /* Light text for dark mode */
+}
+
+.dark .bg-gradient-to-r {
+    background-image: linear-gradient(to right, #065f46, #059669, #14b8a6);
+}
+
+.dark .text-white {
+    color: #f9fafb; /* Light text color */
+}
+
+.dark .text-gray-900 {
+    color: #d1d5db; /* Lighter text in dark mode */
+}
+
+.dark .btn-ghost {
+    background-color: #374151; /* Dark button background */
+    color: #f9fafb;
+}
+
+.dark .hover\:bg-gray-200:hover {
+    background-color: #4b5563; /* Darker hover background */
+}

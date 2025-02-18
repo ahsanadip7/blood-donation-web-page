@@ -104,64 +104,64 @@ const BloodDonationRegistration = () => {
       </motion.div>
 
       {/* Form Section */}
-      <div className="py-12 text-black">
+      <div className="py-12 text-black dark:text-white">
         <motion.div
-          className="max-w-3xl mx-auto my-10 p-8 bg-white shadow-lg rounded-lg"
+          className="max-w-3xl mx-auto my-10 p-8 bg-white shadow-lg rounded-lg dark:bg-gray-800 dark:shadow-2xl"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}>
-          <h2 className="text-2xl font-bold mb-6">Donor Registration Form</h2>
+          <h2 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Donor Registration Form</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Name */}
             <div>
-              <label className="block font-medium mb-2">Name</label>
+              <label className="block font-medium mb-2 text-gray-800 dark:text-white">Name</label>
               <input
                 type="text"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Enter your name"
-                className="input input-bordered w-full"
+                className="input input-bordered w-full dark:bg-gray-700 dark:text-white dark:border-gray-600"
                 required
               />
             </div>
 
             {/* Email */}
             <div>
-              <label className="block font-medium mb-2">Email</label>
+              <label className="block font-medium mb-2 text-gray-800 dark:text-white">Email</label>
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Enter your email"
-                className="input input-bordered w-full"
+                className="input input-bordered w-full dark:bg-gray-700 dark:text-white dark:border-gray-600"
                 required
               />
             </div>
 
             {/* Thumbnail URL */}
             <div>
-              <label className="block font-medium mb-2">Image/Thumbnail URL</label>
+              <label className="block font-medium mb-2 text-gray-800 dark:text-white">Image/Thumbnail URL</label>
               <input
                 type="url"
                 name="thumbnailUrl"
                 value={formData.thumbnailUrl}
                 onChange={handleChange}
                 placeholder="Enter image URL"
-                className="input input-bordered w-full"
+                className="input input-bordered w-full dark:bg-gray-700 dark:text-white dark:border-gray-600"
                 required
               />
             </div>
 
             {/* Blood Group */}
             <div>
-              <label className="block font-medium mb-2">Blood Group</label>
+              <label className="block font-medium mb-2 text-gray-800 dark:text-white">Blood Group</label>
               <select
                 name="bloodGroup"
                 value={formData.bloodGroup}
                 onChange={handleChange}
-                className="select select-bordered w-full"
+                className="select select-bordered w-full dark:bg-gray-700 dark:text-white dark:border-gray-600"
                 required>
                 <option value="">Select Blood Group</option>
                 {bloodGroups.map((group) => (
@@ -174,12 +174,12 @@ const BloodDonationRegistration = () => {
 
             {/* District */}
             <div>
-              <label className="block font-medium mb-2">District</label>
+              <label className="block font-medium mb-2 text-gray-800 dark:text-white">District</label>
               <select
                 name="district"
                 value={formData.district}
                 onChange={handleChange}
-                className="select select-bordered w-full"
+                className="select select-bordered w-full dark:bg-gray-700 dark:text-white dark:border-gray-600"
                 required>
                 <option value="">Select District</option>
                 {districts.map((district) => (
@@ -192,12 +192,12 @@ const BloodDonationRegistration = () => {
 
             {/* Upazila */}
             <div>
-              <label className="block font-medium mb-2">Upazila</label>
+              <label className="block font-medium mb-2 text-gray-800 dark:text-white">Upazila</label>
               <select
                 name="upazila"
                 value={formData.upazila}
                 onChange={handleChange}
-                className="select select-bordered w-full"
+                className="select select-bordered w-full dark:bg-gray-700 dark:text-white dark:border-gray-600"
                 required>
                 <option value="">Select Upazila</option>
                 {upazilas.map((upazila) => (
@@ -210,54 +210,54 @@ const BloodDonationRegistration = () => {
 
             {/* Preferred Date */}
             <div>
-              <label className="block font-medium mb-2">Preferred Donation Date</label>
+              <label className="block font-medium mb-2 text-gray-800 dark:text-white">Preferred Donation Date</label>
               <input
                 type="date"
                 name="preferredDate"
                 value={formData.preferredDate}
                 onChange={handleChange}
-                className="input input-bordered w-full"
+                className="input input-bordered w-full dark:bg-gray-700 dark:text-white dark:border-gray-600"
                 required
               />
             </div>
 
             {/* Preferred Time */}
             <div>
-              <label className="block font-medium mb-2">Preferred Donation Time</label>
+              <label className="block font-medium mb-2 text-gray-800 dark:text-white">Preferred Donation Time</label>
               <input
                 type="time"
                 name="preferredTime"
                 value={formData.preferredTime}
                 onChange={handleChange}
-                className="input input-bordered w-full"
+                className="input input-bordered w-full dark:bg-gray-700 dark:text-white dark:border-gray-600"
                 required
               />
             </div>
 
             {/* Password */}
             <div>
-              <label className="block font-medium mb-2">Password</label>
+              <label className="block font-medium mb-2 text-gray-800 dark:text-white">Password</label>
               <input
                 type="password"
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="Enter your password"
-                className="input input-bordered w-full"
+                className="input input-bordered w-full dark:bg-gray-700 dark:text-white dark:border-gray-600"
                 required
               />
             </div>
 
             {/* Confirm Password */}
             <div>
-              <label className="block font-medium mb-2">Confirm Password</label>
+              <label className="block font-medium mb-2 text-gray-800 dark:text-white">Confirm Password</label>
               <input
                 type="password"
                 name="confirmPassword"
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 placeholder="Confirm your password"
-                className="input input-bordered w-full"
+                className="input input-bordered w-full dark:bg-gray-700 dark:text-white dark:border-gray-600"
                 required
               />
             </div>
@@ -265,7 +265,7 @@ const BloodDonationRegistration = () => {
             {/* Submit Button */}
             <motion.button
               type="submit"
-              className="btn btn-primary w-full"
+              className="btn btn-primary w-full dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-500"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}>
               Register
