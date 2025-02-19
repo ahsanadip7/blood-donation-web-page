@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 const Home = () => {
     return (
         <div className="space-y-10">
+
             {/* Banner Section */}
             <motion.div
                 className="bg-gradient-to-r from-lime-600 via-emerald-500 to-cyan-600 text-white py-20 text-center"
@@ -45,7 +46,7 @@ const Home = () => {
                 transition={{ duration: 1 }}
             >
                 <h2 className="text-3xl font-bold text-center mb-6">Why Join Us?</h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {[
                         {
                             title: "Connect with a Cause",
@@ -62,12 +63,48 @@ const Home = () => {
                     ].map((item, index) => (
                         <motion.div
                             key={index}
-                            className="text-center p-6 border rounded-lg shadow-lg"
+                            className="text-center p-6 border rounded-lg shadow-lg dark:bg-gray-800 dark:text-white"
                             whileHover={{ scale: 1.05 }}
                             transition={{ duration: 0.3 }}
                         >
                             <h3 className="text-2xl font-semibold mb-4">{item.title}</h3>
                             <p>{item.text}</p>
+                        </motion.div>
+                    ))}
+                </div>
+            </motion.div>
+
+            {/* Testimonials Section */}
+            <motion.div
+                className="p-5 bg-gray-100 dark:bg-gray-800"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+            >
+                <h2 className="text-3xl font-bold text-center mb-6 text-gray-800 dark:text-white">What Our Donors Say</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {[
+                        {
+                            name: "John Doe",
+                            testimonial: "Donating blood is such a rewarding experience. It feels good to help others.",
+                        },
+                        {
+                            name: "Jane Smith",
+                            testimonial: "I joined to give back to the community. It's easy and feels great to make a difference.",
+                        },
+                        {
+                            name: "Alice Johnson",
+                            testimonial: "A simple donation can save a life. I'm proud to be part of this mission.",
+                        },
+                    ].map((item, index) => (
+                        <motion.div
+                            key={index}
+                            className="text-center p-6 border rounded-lg shadow-lg dark:bg-gray-700 dark:text-white"
+                            whileHover={{ scale: 1.05 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <p className="italic">"{item.testimonial}"</p>
+                            <p className="mt-4 font-semibold">{item.name}</p>
                         </motion.div>
                     ))}
                 </div>
@@ -81,9 +118,7 @@ const Home = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 1 }}
             >
-                <h2 className="text-3xl font-bold text-center mb-6 text-gray-800 dark:text-white">
-                    Contact Us
-                </h2>
+                <h2 className="text-3xl font-bold text-center mb-6 text-gray-800 dark:text-white">Contact Us</h2>
                 <div className="max-w-2xl mx-auto">
                     {/* Contact Form */}
                     <motion.form
@@ -131,6 +166,37 @@ const Home = () => {
                             </a>
                         </p>
                     </motion.div>
+                </div>
+            </motion.div>
+
+            {/* FAQs Section */}
+            <motion.div
+                className="p-5 bg-gray-100 dark:bg-gray-800"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+            >
+                <h2 className="text-3xl font-bold text-center mb-6 text-gray-800 dark:text-white">Frequently Asked Questions</h2>
+                <div className="space-y-4">
+                    {[
+                        {
+                            question: "How do I become a donor?",
+                            answer: "You can sign up through our registration page, where you'll be guided on the process of becoming a donor.",
+                        },
+                        {
+                            question: "Is donating blood safe?",
+                            answer: "Yes, donating blood is a safe and controlled process monitored by medical professionals.",
+                        },
+                        {
+                            question: "How often can I donate blood?",
+                            answer: "You can donate blood once every 56 days, depending on your health and eligibility.",
+                        },
+                    ].map((item, index) => (
+                        <div key={index} className="p-4 border rounded-lg shadow-lg dark:bg-gray-700 dark:text-white">
+                            <h3 className="font-semibold text-lg">{item.question}</h3>
+                            <p>{item.answer}</p>
+                        </div>
+                    ))}
                 </div>
             </motion.div>
 

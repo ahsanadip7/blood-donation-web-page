@@ -42,12 +42,12 @@ const AllBloodDonation = () => {
     };
 
     return (
-        <div className="p-6 bg-gray-100 w-full">
-            <h1 className="text-2xl font-bold mb-4">All Donation Requests</h1>
+        <div className="p-6 bg-gray-100 dark:bg-gray-800 w-full">
+            <h1 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">All Donation Requests</h1>
 
             {/* Donation Request Table */}
             <div className="overflow-x-auto">
-                <table className="table w-full">
+                <table className="table w-full text-gray-900 dark:text-gray-100">
                     <thead>
                         <tr>
                             <th>Donor Name</th>
@@ -99,9 +99,7 @@ const AllBloodDonation = () => {
                 {[...Array(totalPages)].map((_, index) => (
                     <button
                         key={index}
-                        className={`btn btn-sm mx-1 ${
-                            currentPage === index + 1 ? 'btn-primary' : 'btn-secondary'
-                        }`}
+                        className={`btn btn-sm mx-1 ${currentPage === index + 1 ? 'btn-primary' : 'btn-secondary'}`}
                         onClick={() => setCurrentPage(index + 1)}
                     >
                         {index + 1}

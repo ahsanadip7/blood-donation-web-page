@@ -49,14 +49,14 @@ const AddBlogVol = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-100 w-full">
-      <h1 className="text-2xl font-bold mb-4">Add Blog</h1>
+    <div className="p-6 bg-gray-100 dark:bg-gray-900 w-full min-h-screen">
+      <h1 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Add Blog</h1>
       <form onSubmit={handleCreateBlog} className="space-y-4">
         <div>
-          <label className="block text-sm font-medium mb-1">Title</label>
+          <label className="block text-sm font-medium mb-1 text-gray-900 dark:text-gray-100">Title</label>
           <input
             type="text"
-            className="input input-bordered w-full"
+            className="input input-bordered w-full dark:bg-gray-800 dark:text-white"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Enter blog title"
@@ -65,10 +65,10 @@ const AddBlogVol = () => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1">Thumbnail Image URL</label>
+          <label className="block text-sm font-medium mb-1 text-gray-900 dark:text-gray-100">Thumbnail Image URL</label>
           <input
             type="text"
-            className="input input-bordered w-full"
+            className="input input-bordered w-full dark:bg-gray-800 dark:text-white"
             value={thumbnail}
             onChange={(e) => setThumbnail(e.target.value)}
             placeholder="Enter thumbnail URL"
@@ -80,7 +80,7 @@ const AddBlogVol = () => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1">Content</label>
+          <label className="block text-sm font-medium mb-1 text-gray-900 dark:text-gray-100">Content</label>
           <JoditEditor
             ref={editor}
             value={content}
@@ -88,7 +88,7 @@ const AddBlogVol = () => {
           />
         </div>
 
-        <button type="submit" className="btn btn-primary w-full">
+        <button type="submit" className="btn btn-primary w-full dark:bg-blue-700 dark:text-white">
           Create Blog
         </button>
       </form>

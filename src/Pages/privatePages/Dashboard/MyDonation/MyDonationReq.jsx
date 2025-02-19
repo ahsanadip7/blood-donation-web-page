@@ -58,61 +58,44 @@ const MyDonationReq = () => {
                 </div>
 
                 {/* Requests Table */}
-                <table className="table-auto w-full border-collapse border border-gray-300 dark:border-gray-600">
-                    <thead>
-                        <tr className="bg-indigo-100 dark:bg-indigo-800">
-                            <th className="border border-gray-300 px-4 py-2">#</th>
-                            <th className="border border-gray-300 px-4 py-2">Recipient Name</th>
-                            <th className="border border-gray-300 px-4 py-2">Location</th>
-                            <th className="border border-gray-300 px-4 py-2">Date</th>
-                            <th className="border border-gray-300 px-4 py-2">Time</th>
-                            <th className="border border-gray-300 px-4 py-2">Blood Group</th>
-                            <th className="border border-gray-300 px-4 py-2">Status</th>
-                            <th className="border border-gray-300 px-4 py-2">Hospital</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {paginatedRequests.length > 0 ? (
-                            paginatedRequests.map((req, index) => (
-                                <tr key={req._id} className="text-center bg-white dark:bg-gray-800">
-                                    <td className="border border-gray-300 px-4 py-2">
-                                        {startIndex + index + 1}
-                                    </td>
-                                    <td className="border border-gray-300 px-4 py-2">
-                                        {req.recipientName}
-                                    </td>
-                                    <td className="border border-gray-300 px-4 py-2">
-                                        {req.recipientDistrict}, {req.recipientUpazila}
-                                    </td>
-                                    <td className="border border-gray-300 px-4 py-2">
-                                        {req.donationDate}
-                                    </td>
-                                    <td className="border border-gray-300 px-4 py-2">
-                                        {req.donationTime}
-                                    </td>
-                                    <td className="border border-gray-300 px-4 py-2">
-                                        {req.bloodGroup}
-                                    </td>
-                                    <td className="border border-gray-300 px-4 py-2 capitalize">
-                                        {req.status}
-                                    </td>
-                                    <td className="border border-gray-300 px-4 py-2">
-                                        {req.hospitalName}
-                                    </td>
-                                </tr>
-                            ))
-                        ) : (
-                            <tr>
-                                <td
-                                    colSpan="8"
-                                    className="text-center text-gray-500 py-4 dark:text-gray-400"
-                                >
-                                    No requests found.
-                                </td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
+                <div className="overflow-x-auto">
+    <table className="table-auto w-full border-collapse border border-gray-300 dark:border-gray-600">
+        <thead>
+            <tr className="bg-indigo-100 dark:bg-indigo-800">
+                <th className="border border-gray-300 px-4 py-2">#</th>
+                <th className="border border-gray-300 px-4 py-2">Recipient Name</th>
+                <th className="border border-gray-300 px-4 py-2">Location</th>
+                <th className="border border-gray-300 px-4 py-2">Date</th>
+                <th className="border border-gray-300 px-4 py-2">Time</th>
+                <th className="border border-gray-300 px-4 py-2">Blood Group</th>
+                <th className="border border-gray-300 px-4 py-2">Status</th>
+                <th className="border border-gray-300 px-4 py-2">Hospital</th>
+            </tr>
+        </thead>
+        <tbody>
+            {paginatedRequests.length > 0 ? (
+                paginatedRequests.map((req, index) => (
+                    <tr key={req._id} className="text-center bg-white dark:bg-gray-800">
+                        <td className="border border-gray-300 px-4 py-2">{startIndex + index + 1}</td>
+                        <td className="border border-gray-300 px-4 py-2">{req.recipientName}</td>
+                        <td className="border border-gray-300 px-4 py-2">{req.recipientDistrict}, {req.recipientUpazila}</td>
+                        <td className="border border-gray-300 px-4 py-2">{req.donationDate}</td>
+                        <td className="border border-gray-300 px-4 py-2">{req.donationTime}</td>
+                        <td className="border border-gray-300 px-4 py-2">{req.bloodGroup}</td>
+                        <td className="border border-gray-300 px-4 py-2 capitalize">{req.status}</td>
+                        <td className="border border-gray-300 px-4 py-2">{req.hospitalName}</td>
+                    </tr>
+                ))
+            ) : (
+                <tr>
+                    <td colSpan="8" className="text-center text-gray-500 py-4 dark:text-gray-400">
+                        No requests found.
+                    </td>
+                </tr>
+            )}
+        </tbody>
+    </table>
+</div>
 
                 {/* Pagination Controls */}
                 {totalPages > 1 && (

@@ -94,14 +94,14 @@ const AllUsers = () => {
     };
 
     return (
-        <div className="p-6 bg-gray-100 w-full">
-            <h1 className="text-2xl font-bold mb-4">All Users</h1>
+        <div className="p-6 bg-gray-100 dark:bg-gray-800 w-full">
+            <h1 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">All Users</h1>
 
             {/* Filter Options */}
             <div className="flex justify-between items-center mb-4">
                 <select
                     onChange={(e) => setFilter(e.target.value)}
-                    className="select select-bordered"
+                    className="select select-bordered dark:bg-gray-700 dark:text-gray-200"
                 >
                     <option value="all">All</option>
                     <option value="active">Active</option>
@@ -111,7 +111,7 @@ const AllUsers = () => {
 
             {/* User Table */}
             <div className="overflow-x-auto">
-                <table className="table w-full">
+                <table className="table w-full text-gray-900 dark:text-gray-100">
                     <thead>
                         <tr>
                             <th>Avatar</th>
@@ -140,13 +140,13 @@ const AllUsers = () => {
                                     <div className="dropdown dropdown-end">
                                         <button
                                             tabIndex={0}
-                                            className="btn btn-sm btn-ghost"
+                                            className="btn btn-sm btn-ghost dark:text-gray-300"
                                         >
                                             <i className="fas fa-ellipsis-v"></i>
                                         </button>
                                         <ul
                                             tabIndex={0}
-                                            className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+                                            className="dropdown-content menu p-2 shadow bg-base-100 dark:bg-gray-900 rounded-box w-52"
                                         >
                                             {user.activeStatus ? (
                                                 <li>
@@ -179,15 +179,9 @@ const AllUsers = () => {
                                                             user.role === 'volunteer'
                                                         )
                                                     }
-                                                    className={
-                                                        user.role === 'volunteer'
-                                                            ? 'text-danger'
-                                                            : 'text-primary'
-                                                    }
+                                                    className={user.role === 'volunteer' ? 'text-danger' : 'text-primary'}
                                                 >
-                                                    {user.role === 'volunteer'
-                                                        ? 'Remove Volunteer'
-                                                        : 'Make Volunteer'}
+                                                    {user.role === 'volunteer' ? 'Remove Volunteer' : 'Make Volunteer'}
                                                 </button>
                                             </li>
                                             {user.adminRol !== 'admin' && (
@@ -214,9 +208,7 @@ const AllUsers = () => {
                 {[...Array(totalPages)].map((_, index) => (
                     <button
                         key={index}
-                        className={`btn btn-sm mx-1 ${
-                            currentPage === index + 1 ? 'btn-primary' : 'btn-secondary'
-                        }`}
+                        className={`btn btn-sm mx-1 ${currentPage === index + 1 ? 'btn-primary' : 'btn-secondary'}`}
                         onClick={() => setCurrentPage(index + 1)}
                     >
                         {index + 1}
