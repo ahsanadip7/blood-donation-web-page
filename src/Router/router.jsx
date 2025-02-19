@@ -28,6 +28,8 @@ import SearchPage from "../HomeComponent/Main/SearchPage";
 import BloodDonationReq from "../HomeComponent/Main/BloodDonationReq";
 import ReqDetails from "../HomeComponent/Main/ReqDetails";
 import FundingPage from "../HomeComponent/Main/FundingPage";
+import AllBloodDonations from "../AllBloodDonations";
+import ErrorPage from "../ErrorPage";
 
 
 
@@ -39,6 +41,15 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>
+            },
+            {
+                path: 'all-donations',
+                element: <AllBloodDonations></AllBloodDonations>,
+                loader: ()=>fetch('https://assignment-12-server-omega-six.vercel.app/donationRequests')
+            },
+            {
+                path: '*',
+                element: <ErrorPage></ErrorPage>
             },
             {
                 path: 'login',

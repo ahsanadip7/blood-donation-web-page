@@ -61,6 +61,7 @@ const NavBar = () => {
   const userLinks = (
     <>
       <NavLink to="/"><li>Home</li></NavLink>
+      <NavLink to="/all-donations"><li>All Donations</li></NavLink>
       <NavLink to="/registration"><li>Registration</li></NavLink>
       <NavLink to="/donation-requests"><li>Donation Requests</li></NavLink>
       <NavLink to="/blog"><li>Blog</li></NavLink>
