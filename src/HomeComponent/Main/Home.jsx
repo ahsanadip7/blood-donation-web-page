@@ -38,26 +38,23 @@ const Home = () => {
                 </motion.div>
             </motion.div>
 
-
+            {/* Impact of Your Donation Section */}
             <motion.div
-                className="p-5 bg-gradient-to-r from-lime-600 via-emerald-500 to-cyan-600 dark:bg-blue-800 text-white dark:text-gray-200 text-center rounded-lg"
+                className="p-5 bg-teal-500 dark:bg-teal-800 text-white dark:text-gray-200 text-center rounded-lg"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1 }}
             >
-                <h2 className="text-3xl font-bold mb-6 text-white dark:text-gray-200">Emergency Blood Requests</h2>
+                <h2 className="text-3xl font-bold mb-6">Impact of Your Donation</h2>
                 <motion.div
                     className="text-5xl font-bold mb-4"
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ delay: 0.5, duration: 1 }}
                 >
-                    <span className="text-6xl text-yellow-300 dark:text-yellow-400">50+</span> requests every day!
+                    <span>1</span> donation saves <span className="text-6xl text-yellow-300 dark:text-yellow-400">3</span> lives!
                 </motion.div>
             </motion.div>
-
-
-
 
             {/* Featured Section */}
             <motion.div
@@ -68,7 +65,7 @@ const Home = () => {
             >
                 <h2 className="text-3xl font-bold text-center mb-6">Why Join Us?</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {[
+                    {[ 
                         {
                             title: "Connect with a Cause",
                             text: "Be a part of a community dedicated to saving lives through blood donation and support.",
@@ -94,25 +91,6 @@ const Home = () => {
                     ))}
                 </div>
             </motion.div>
-            <motion.div
-                className="p-5 bg-teal-500 dark:bg-teal-800 text-white dark:text-gray-200 text-center rounded-lg"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
-            >
-                <h2 className="text-3xl font-bold mb-6">Impact of Your Donation</h2>
-                <motion.div
-                    className="text-5xl font-bold mb-4"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ delay: 0.5, duration: 1 }}
-                >
-                    <span>1</span> donation saves <span className="text-6xl text-yellow-300 dark:text-yellow-400">3</span> lives!
-                </motion.div>
-            </motion.div>
-
-
-
 
             {/* Testimonials Section */}
             <motion.div
@@ -123,7 +101,7 @@ const Home = () => {
             >
                 <h2 className="text-3xl font-bold text-center mb-6 text-gray-800 dark:text-white">What Our Donors Say</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {[
+                    {[ 
                         {
                             name: "John Doe",
                             testimonial: "Donating blood is such a rewarding experience. It feels good to help others.",
@@ -150,10 +128,99 @@ const Home = () => {
                 </div>
             </motion.div>
 
-          
+         
 
-            {/* Contact Us Section */}
-            <motion.div
+   {/* Our Mission Section */}
+<motion.div
+    className="p-5 bg-white dark:bg-gray-800 transition-colors duration-300 text-black dark:text-white text-center rounded-lg shadow-lg"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 1 }}
+>
+    <h2 className="text-3xl font-bold mb-6">Our Mission</h2>
+    <p className="text-lg md:text-xl">
+        Our mission is to connect blood donors and recipients to help save lives. By joining us, you become part of a global community working towards a single cause — making blood donation accessible and easy for everyone.
+    </p>
+</motion.div>
+
+{/* Donation Stats Section */}
+<motion.div
+    className="p-10 bg-gradient-to-r from-teal-100 via-teal-200 to-teal-300 dark:bg-gradient-to-r dark:from-teal-700 dark:via-teal-800 dark:to-teal-900 transition-colors duration-300 text-black dark:text-white text-center rounded-lg shadow-lg"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 1 }}
+>
+    <h2 className="text-3xl font-bold mb-4">Donation Stats</h2>
+    <div className="text-4xl font-semibold mb-2">
+        <span>5000+</span> Donors Registered
+    </div>
+    <div className="text-4xl font-semibold">
+        <span>15000+</span> Lives Saved
+    </div>
+</motion.div>
+
+<motion.div
+    className="p-20 bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 text-white text-center rounded-lg shadow-lg"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 1 }}
+>
+    <h2 className="text-4xl md:text-5xl font-bold mb-6">
+        Your Donation Can Make a Lifesaving Difference
+    </h2>
+    <p className="text-lg md:text-xl mb-8">
+        Blood donation is a simple act that saves lives. By joining our platform, you can connect with others and contribute to a global cause. Every donation counts in our mission to create a healthier world.
+    </p>
+    
+    <div className="flex justify-center space-x-8 mb-8">
+        <motion.div
+            className="text-center"
+            initial={{ scale: 0.8 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.5, duration: 0.7 }}
+        >
+            <div className="text-6xl font-semibold mb-2">
+                <span>5000+</span>
+            </div>
+            <p className="text-lg">Donors Registered</p>
+        </motion.div>
+
+        <motion.div
+            className="text-center"
+            initial={{ scale: 0.8 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.7, duration: 0.7 }}
+        >
+            <div className="text-6xl font-semibold mb-2">
+                <span>15000+</span>
+            </div>
+            <p className="text-lg">Lives Saved</p>
+        </motion.div>
+
+        <motion.div
+            className="text-center"
+            initial={{ scale: 0.8 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.9, duration: 0.7 }}
+        >
+            <div className="text-6xl font-semibold mb-2">
+                <span>20+</span>
+            </div>
+            <p className="text-lg">Countries Impacted</p>
+        </motion.div>
+    </div>
+
+    <NavLink
+        to="/join"
+        className="px-12 py-4 bg-white text-purple-600 font-semibold rounded-full shadow-lg hover:bg-gray-100 transition-colors"
+    >
+        Join the Movement
+    </NavLink>
+</motion.div>
+
+
+   {/* Contact Us Section */}
+   <motion.div
                 className="p-5 bg-gray-100 dark:bg-gray-800 transition-colors duration-300"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -210,36 +277,6 @@ const Home = () => {
                     </motion.div>
                 </div>
             </motion.div>
-
-
-            <motion.div
-                className="p-5 bg-teal-600 text-white text-center rounded-lg"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
-            >
-                <h2 className="text-3xl font-bold mb-4">We Did It!</h2>
-                <p className="text-xl">Our community has reached 5000 donations!</p>
-                <motion.div
-                    className="mt-4"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.5, duration: 0.5 }}
-                >
-                    <div className="w-12 h-12 rounded-full bg-white text-teal-600 flex justify-center items-center text-2xl font-bold">
-                        🎉
-                    </div>
-                </motion.div>
-                <div className="mt-4">
-                    <p className="text-lg">Together, we’re making a huge impact!</p>
-                </div>
-            </motion.div>
-
-
-
-
-
-
 
 
 
