@@ -1,8 +1,10 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLoaderData } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const Home = () => {
+    const allDonation = useLoaderData()
+    console.log(allDonation);
     return (
         <div className="space-y-10">
 
@@ -38,23 +40,78 @@ const Home = () => {
                 </motion.div>
             </motion.div>
 
-            {/* Impact of Your Donation Section */}
             <motion.div
-                className="p-5 bg-teal-500 dark:bg-teal-800 text-white dark:text-gray-200 text-center rounded-lg"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
+      className="p-5"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
+      <h2 className="text-3xl font-bold mb-6 text-center">Recent Donation Requests</h2>
+
+      <div className="overflow-x-auto">
+        <div className="flex space-x-6 pb-4">
+          {allDonation.map((donation) => (
+            <motion.div
+              key={donation._id}
+              className="min-w-[300px] p-5 border rounded-2xl shadow-md bg-white dark:bg-gray-900 text-left space-y-2 hover:shadow-lg transition-shadow duration-300"
+              whileHover={{ scale: 1.03 }}
             >
-                <h2 className="text-3xl font-bold mb-6">Impact of Your Donation</h2>
-                <motion.div
-                    className="text-5xl font-bold mb-4"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ delay: 0.5, duration: 1 }}
-                >
-                    <span>1</span> donation saves <span className="text-6xl text-yellow-300 dark:text-yellow-400">3</span> lives!
-                </motion.div>
+              {/* Recipient Name */}
+              <h3 className="text-xl font-bold text-red-600 dark:text-red-400">{donation.recipientName}</h3>
+
+              {/* Blood Group */}
+              <p>
+                <span className="font-semibold text-gray-700 dark:text-gray-300">🩸 Blood Group: </span>
+                <span className="text-pink-600 dark:text-pink-400 font-medium">{donation.bloodGroup}</span>
+              </p>
+
+              {/* Date & Time */}
+              <p>
+                <span className="font-semibold text-gray-700 dark:text-gray-300">📅 Date: </span>
+                <span className="text-blue-700 dark:text-blue-400">{donation.donationDate}</span>
+              </p>
+              <p>
+                <span className="font-semibold text-gray-700 dark:text-gray-300">⏰ Time: </span>
+                <span className="text-indigo-700 dark:text-indigo-400">{donation.donationTime}</span>
+              </p>
+
+              {/* Hospital */}
+              <p>
+                <span className="font-semibold text-gray-700 dark:text-gray-300">🏥 Hospital: </span>
+                <span className="text-green-700 dark:text-green-400">{donation.hospitalName}</span>
+              </p>
+
+              {/* Location */}
+              <p>
+                <span className="font-semibold text-gray-700 dark:text-gray-300">📍 District: </span>
+                <span className="text-orange-600 dark:text-orange-400">{donation.recipientDistrict}</span>
+              </p>
+              <p>
+                <span className="font-semibold text-gray-700 dark:text-gray-300">🗺️ Upazila: </span>
+                <span className="text-amber-700 dark:text-amber-400">{donation.recipientUpazila}</span>
+              </p>
+
+              {/* Message */}
+              <p className="italic text-gray-600 dark:text-gray-300 mt-2">“{donation.requestMessage}”</p>
+
+              {/* Requester Name */}
+              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                Requested by: <span className="font-medium">{donation.requesterName}</span>
+              </p>
+
+              {/* Status */}
+              <p className={`mt-2 font-semibold ${
+                donation.status === 'Pending'
+                  ? 'text-yellow-600 dark:text-yellow-400'
+                  : 'text-green-700 dark:text-green-400'
+              }`}>
+                🔖 Status: {donation.status}
+              </p>
             </motion.div>
+          ))}
+        </div>
+      </div>
+    </motion.div>
 
             {/* Featured Section */}
             <motion.div
@@ -65,7 +122,7 @@ const Home = () => {
             >
                 <h2 className="text-3xl font-bold text-center mb-6">Why Join Us?</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {[ 
+                    {[
                         {
                             title: "Connect with a Cause",
                             text: "Be a part of a community dedicated to saving lives through blood donation and support.",
@@ -101,7 +158,7 @@ const Home = () => {
             >
                 <h2 className="text-3xl font-bold text-center mb-6 text-gray-800 dark:text-white">What Our Donors Say</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {[ 
+                    {[
                         {
                             name: "John Doe",
                             testimonial: "Donating blood is such a rewarding experience. It feels good to help others.",
@@ -128,99 +185,72 @@ const Home = () => {
                 </div>
             </motion.div>
 
-         
-
-   {/* Our Mission Section */}
-<motion.div
-    className="p-5 bg-white dark:bg-gray-800 transition-colors duration-300 text-black dark:text-white text-center rounded-lg shadow-lg"
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: 1 }}
->
-    <h2 className="text-3xl font-bold mb-6">Our Mission</h2>
-    <p className="text-lg md:text-xl">
-        Our mission is to connect blood donors and recipients to help save lives. By joining us, you become part of a global community working towards a single cause — making blood donation accessible and easy for everyone.
-    </p>
-</motion.div>
-
-{/* Donation Stats Section */}
-<motion.div
-    className="p-10 bg-gradient-to-r from-teal-100 via-teal-200 to-teal-300 dark:bg-gradient-to-r dark:from-teal-700 dark:via-teal-800 dark:to-teal-900 transition-colors duration-300 text-black dark:text-white text-center rounded-lg shadow-lg"
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: 1 }}
->
-    <h2 className="text-3xl font-bold mb-4">Donation Stats</h2>
-    <div className="text-4xl font-semibold mb-2">
-        <span>5000+</span> Donors Registered
-    </div>
-    <div className="text-4xl font-semibold">
-        <span>15000+</span> Lives Saved
-    </div>
-</motion.div>
-
-<motion.div
-    className="p-20 bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 text-white text-center rounded-lg shadow-lg"
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: 1 }}
->
-    <h2 className="text-4xl md:text-5xl font-bold mb-6">
-        Your Donation Can Make a Lifesaving Difference
-    </h2>
-    <p className="text-lg md:text-xl mb-8">
-        Blood donation is a simple act that saves lives. By joining our platform, you can connect with others and contribute to a global cause. Every donation counts in our mission to create a healthier world.
-    </p>
-    
-    <div className="flex justify-center space-x-8 mb-8">
-        <motion.div
-            className="text-center"
-            initial={{ scale: 0.8 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.5, duration: 0.7 }}
-        >
-            <div className="text-6xl font-semibold mb-2">
-                <span>5000+</span>
-            </div>
-            <p className="text-lg">Donors Registered</p>
-        </motion.div>
-
-        <motion.div
-            className="text-center"
-            initial={{ scale: 0.8 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.7, duration: 0.7 }}
-        >
-            <div className="text-6xl font-semibold mb-2">
-                <span>15000+</span>
-            </div>
-            <p className="text-lg">Lives Saved</p>
-        </motion.div>
-
-        <motion.div
-            className="text-center"
-            initial={{ scale: 0.8 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.9, duration: 0.7 }}
-        >
-            <div className="text-6xl font-semibold mb-2">
-                <span>20+</span>
-            </div>
-            <p className="text-lg">Countries Impacted</p>
-        </motion.div>
-    </div>
-
-    <NavLink
-        to="/join"
-        className="px-12 py-4 bg-white text-purple-600 font-semibold rounded-full shadow-lg hover:bg-gray-100 transition-colors"
-    >
-        Join the Movement
-    </NavLink>
-</motion.div>
 
 
-   {/* Contact Us Section */}
-   <motion.div
+
+
+            <motion.div
+                className="p-20 bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 text-white text-center rounded-lg shadow-lg"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+            >
+                <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                    Your Donation Can Make a Lifesaving Difference
+                </h2>
+                <p className="text-lg md:text-xl mb-8">
+                    Blood donation is a simple act that saves lives. By joining our platform, you can connect with others and contribute to a global cause. Every donation counts in our mission to create a healthier world.
+                </p>
+
+                <div className="flex justify-center space-x-8 mb-8">
+                    <motion.div
+                        className="text-center"
+                        initial={{ scale: 0.8 }}
+                        animate={{ scale: 1 }}
+                        transition={{ delay: 0.5, duration: 0.7 }}
+                    >
+                        <div className="text-6xl font-semibold mb-2">
+                            <span>5000+</span>
+                        </div>
+                        <p className="text-lg">Donors Registered</p>
+                    </motion.div>
+
+                    <motion.div
+                        className="text-center"
+                        initial={{ scale: 0.8 }}
+                        animate={{ scale: 1 }}
+                        transition={{ delay: 0.7, duration: 0.7 }}
+                    >
+                        <div className="text-6xl font-semibold mb-2">
+                            <span>15000+</span>
+                        </div>
+                        <p className="text-lg">Lives Saved</p>
+                    </motion.div>
+
+                    <motion.div
+                        className="text-center"
+                        initial={{ scale: 0.8 }}
+                        animate={{ scale: 1 }}
+                        transition={{ delay: 0.9, duration: 0.7 }}
+                    >
+                        <div className="text-6xl font-semibold mb-2">
+                            <span>20+</span>
+                        </div>
+                        <p className="text-lg">Countries Impacted</p>
+                    </motion.div>
+                </div>
+
+                <NavLink
+                    to="/join"
+                    className="px-12 py-4 bg-white text-purple-600 font-semibold rounded-full shadow-lg hover:bg-gray-100 transition-colors"
+                >
+                    Join the Movement
+                </NavLink>
+            </motion.div>
+
+
+            {/* Contact Us Section */}
+            <motion.div
                 className="p-5 bg-gray-100 dark:bg-gray-800 transition-colors duration-300"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
