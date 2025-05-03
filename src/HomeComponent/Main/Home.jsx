@@ -6,7 +6,7 @@ const Home = () => {
     const allDonation = useLoaderData()
     console.log(allDonation);
     return (
-        <div className="space-y-10">
+        <div className="space-y-10 bg-white dark:bg-gray-900">
 
             {/* Banner Section */}
             <motion.div
@@ -40,150 +40,134 @@ const Home = () => {
                 </motion.div>
             </motion.div>
 
-            <motion.div
-      className="p-5"
+            <motion.section
+      className="px-4 py-8 md:px-8 lg:px-16 bg-white dark:bg-gray-900"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      <h2 className="text-3xl font-bold mb-6 text-center">Recent Donation Requests</h2>
+      <h2 className="text-3xl font-bold mb-6 text-center text-gray-800 dark:text-white">
+        Recent Donation Requests
+      </h2>
 
       <div className="overflow-x-auto">
         <div className="flex space-x-6 pb-4">
           {allDonation.map((donation) => (
             <motion.div
               key={donation._id}
-              className="min-w-[300px] p-5 border rounded-2xl shadow-md bg-white dark:bg-gray-900 text-left space-y-2 hover:shadow-lg transition-shadow duration-300"
-              whileHover={{ scale: 1.03 }}
+              className="min-w-[300px] max-w-sm p-5 border rounded-2xl shadow-md bg-white dark:bg-gray-800 text-left space-y-2 hover:shadow-lg transition-shadow duration-300"
+              whileHover={{ scale: 1.02 }}
             >
-              {/* Recipient Name */}
-              <h3 className="text-xl font-bold text-red-600 dark:text-red-400">{donation.recipientName}</h3>
+              <h3 className="text-xl font-semibold mb-1 text-gray-800 dark:text-white">
+                {donation.recipientName}
+              </h3>
 
-              {/* Blood Group */}
-              <p>
-                <span className="font-semibold text-gray-700 dark:text-gray-300">🩸 Blood Group: </span>
-                <span className="text-pink-600 dark:text-pink-400 font-medium">{donation.bloodGroup}</span>
-              </p>
+              <div className="space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                <p><span className="font-medium">Blood Group:</span> {donation.bloodGroup}</p>
+                <p><span className="font-medium">Date:</span> {donation.donationDate}</p>
+                <p><span className="font-medium">Time:</span> {donation.donationTime}</p>
+                <p><span className="font-medium">Hospital:</span> {donation.hospitalName}</p>
+                <p><span className="font-medium">District:</span> {donation.recipientDistrict}</p>
+                <p><span className="font-medium">Upazila:</span> {donation.recipientUpazila}</p>
+              </div>
 
-              {/* Date & Time */}
-              <p>
-                <span className="font-semibold text-gray-700 dark:text-gray-300">📅 Date: </span>
-                <span className="text-blue-700 dark:text-blue-400">{donation.donationDate}</span>
-              </p>
-              <p>
-                <span className="font-semibold text-gray-700 dark:text-gray-300">⏰ Time: </span>
-                <span className="text-indigo-700 dark:text-indigo-400">{donation.donationTime}</span>
-              </p>
+              {donation.requestMessage && (
+                <p className="text-sm italic text-gray-600 dark:text-gray-400 mt-2">
+                  “{donation.requestMessage}”
+                </p>
+              )}
 
-              {/* Hospital */}
-              <p>
-                <span className="font-semibold text-gray-700 dark:text-gray-300">🏥 Hospital: </span>
-                <span className="text-green-700 dark:text-green-400">{donation.hospitalName}</span>
-              </p>
-
-              {/* Location */}
-              <p>
-                <span className="font-semibold text-gray-700 dark:text-gray-300">📍 District: </span>
-                <span className="text-orange-600 dark:text-orange-400">{donation.recipientDistrict}</span>
-              </p>
-              <p>
-                <span className="font-semibold text-gray-700 dark:text-gray-300">🗺️ Upazila: </span>
-                <span className="text-amber-700 dark:text-amber-400">{donation.recipientUpazila}</span>
-              </p>
-
-              {/* Message */}
-              <p className="italic text-gray-600 dark:text-gray-300 mt-2">“{donation.requestMessage}”</p>
-
-              {/* Requester Name */}
-              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+              <p className="text-xs text-gray-500 dark:text-gray-400">
                 Requested by: <span className="font-medium">{donation.requesterName}</span>
               </p>
 
-              {/* Status */}
-              <p className={`mt-2 font-semibold ${
+              <p className={`mt-1 text-sm font-semibold ${
                 donation.status === 'Pending'
                   ? 'text-yellow-600 dark:text-yellow-400'
-                  : 'text-green-700 dark:text-green-400'
+                  : 'text-green-600 dark:text-green-400'
               }`}>
-                🔖 Status: {donation.status}
+                Status: {donation.status}
               </p>
             </motion.div>
           ))}
         </div>
       </div>
-    </motion.div>
+    </motion.section>
 
             {/* Featured Section */}
             <motion.div
-                className="p-5"
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1 }}
-            >
-                <h2 className="text-3xl font-bold text-center mb-6">Why Join Us?</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {[
-                        {
-                            title: "Connect with a Cause",
-                            text: "Be a part of a community dedicated to saving lives through blood donation and support.",
-                        },
-                        {
-                            title: "Find Donors Easily",
-                            text: "Our platform helps you search and connect with donors near you in just a few clicks.",
-                        },
-                        {
-                            title: "Make an Impact",
-                            text: "Each blood donation can save up to three lives. Your contribution truly makes a difference.",
-                        },
-                    ].map((item, index) => (
-                        <motion.div
-                            key={index}
-                            className="text-center p-6 border rounded-lg shadow-lg dark:bg-gray-800 dark:text-white"
-                            whileHover={{ scale: 1.05 }}
-                            transition={{ duration: 0.3 }}
-                        >
-                            <h3 className="text-2xl font-semibold mb-4">{item.title}</h3>
-                            <p>{item.text}</p>
-                        </motion.div>
-                    ))}
-                </div>
-            </motion.div>
+    className="p-5"
+    initial={{ opacity: 0, y: 50 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 1 }}
+>
+    <h2 className="text-3xl font-bold text-center mb-6 text-gray-900 dark:text-white">Why Join Us?</h2>
 
-            {/* Testimonials Section */}
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[
+            {
+                title: "Connect with a Cause",
+                text: "Be a part of a community dedicated to saving lives through blood donation and support.",
+            },
+            {
+                title: "Find Donors Easily",
+                text: "Our platform helps you search and connect with donors near you in just a few clicks.",
+            },
+            {
+                title: "Make an Impact",
+                text: "Each blood donation can save up to three lives. Your contribution truly makes a difference.",
+            },
+        ].map((item, index) => (
             <motion.div
-                className="p-5 bg-gray-100 dark:bg-gray-800"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
+                key={index}
+                className="text-center p-6 border rounded-lg shadow-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-shadow duration-300 hover:shadow-lg"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
             >
-                <h2 className="text-3xl font-bold text-center mb-6 text-gray-800 dark:text-white">What Our Donors Say</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {[
-                        {
-                            name: "John Doe",
-                            testimonial: "Donating blood is such a rewarding experience. It feels good to help others.",
-                        },
-                        {
-                            name: "Jane Smith",
-                            testimonial: "I joined to give back to the community. It's easy and feels great to make a difference.",
-                        },
-                        {
-                            name: "Alice Johnson",
-                            testimonial: "A simple donation can save a life. I'm proud to be part of this mission.",
-                        },
-                    ].map((item, index) => (
-                        <motion.div
-                            key={index}
-                            className="text-center p-6 border rounded-lg shadow-lg dark:bg-gray-700 dark:text-white"
-                            whileHover={{ scale: 1.05 }}
-                            transition={{ duration: 0.3 }}
-                        >
-                            <p className="italic">"{item.testimonial}"</p>
-                            <p className="mt-4 font-semibold">{item.name}</p>
-                        </motion.div>
-                    ))}
-                </div>
+                <h3 className="text-2xl font-semibold mb-4">{item.title}</h3>
+                <p className="text-gray-700 dark:text-gray-300">{item.text}</p>
             </motion.div>
+        ))}
+    </div>
+</motion.div>
+
+
+           {/* Testimonials Section */}
+<motion.div
+    className="p-5"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 1 }}
+>
+    <h2 className="text-3xl font-bold text-center mb-6 text-gray-800 dark:text-white">What Our Donors Say</h2>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[
+            {
+                name: "John Doe",
+                testimonial: "Donating blood is such a rewarding experience. It feels good to help others.",
+            },
+            {
+                name: "Jane Smith",
+                testimonial: "I joined to give back to the community. It's easy and feels great to make a difference.",
+            },
+            {
+                name: "Alice Johnson",
+                testimonial: "A simple donation can save a life. I'm proud to be part of this mission.",
+            },
+        ].map((item, index) => (
+            <motion.div
+                key={index}
+                className="text-center p-6 border rounded-lg shadow-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-shadow duration-300 hover:shadow-lg"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+            >
+                <p className="italic text-gray-600 dark:text-gray-300">"{item.testimonial}"</p>
+                <p className="mt-4 font-semibold text-gray-800 dark:text-white">{item.name}</p>
+            </motion.div>
+        ))}
+    </div>
+</motion.div>
+
 
 
 

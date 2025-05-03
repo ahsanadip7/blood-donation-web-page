@@ -89,7 +89,8 @@ const BloodDonationRegistration = () => {
   };
 
   return (
-    <div>
+    <div className='bg-white dark:bg-gray-900'>
+
       {/* Banner Section */}
       <motion.div
         className="relative bg-cover bg-center h-64"
@@ -104,175 +105,75 @@ const BloodDonationRegistration = () => {
       </motion.div>
 
       {/* Form Section */}
-      <div className="py-12 text-black dark:text-white">
-        <motion.div
-          className="max-w-3xl mx-auto my-10 p-8 bg-white shadow-lg rounded-lg dark:bg-gray-800 dark:shadow-2xl"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}>
-          <h2 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Donor Registration Form</h2>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Name */}
-            <div>
-              <label className="block font-medium mb-2 text-gray-800 dark:text-white">Name</label>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Enter your name"
-                className="input input-bordered w-full dark:bg-gray-700 dark:text-white dark:border-gray-600"
-                required
-              />
-            </div>
+      <div className="py-12 px-4 text-black dark:text-white">
+  <motion.div
+    className="max-w-3xl mx-auto p-8 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-lg dark:shadow-2xl transition-all"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+  >
+    <h2 className="text-3xl font-bold mb-8 text-center text-gray-900 dark:text-white">
+      Donor Registration Form
+    </h2>
 
-            {/* Email */}
-            <div>
-              <label className="block font-medium mb-2 text-gray-800 dark:text-white">Email</label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Enter your email"
-                className="input input-bordered w-full dark:bg-gray-700 dark:text-white dark:border-gray-600"
-                required
-              />
-            </div>
+    <form onSubmit={handleSubmit} className="space-y-6">
+      {[
+        { label: "Name", name: "name", type: "text", placeholder: "Enter your name" },
+        { label: "Email", name: "email", type: "email", placeholder: "Enter your email" },
+        { label: "Image/Thumbnail URL", name: "thumbnailUrl", type: "url", placeholder: "Enter image URL" },
+        { label: "Preferred Donation Date", name: "preferredDate", type: "date" },
+        { label: "Preferred Donation Time", name: "preferredTime", type: "time" },
+        { label: "Password", name: "password", type: "password", placeholder: "Enter password" },
+        { label: "Confirm Password", name: "confirmPassword", type: "password", placeholder: "Confirm password" },
+      ].map(({ label, name, type, placeholder }) => (
+        <div key={name}>
+          <label className="block mb-1 font-medium">{label}</label>
+          <input
+            type={type}
+            name={name}
+            value={formData[name]}
+            onChange={handleChange}
+            placeholder={placeholder}
+            className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-500 transition"
+            required
+          />
+        </div>
+      ))}
 
-            {/* Thumbnail URL */}
-            <div>
-              <label className="block font-medium mb-2 text-gray-800 dark:text-white">Image/Thumbnail URL</label>
-              <input
-                type="url"
-                name="thumbnailUrl"
-                value={formData.thumbnailUrl}
-                onChange={handleChange}
-                placeholder="Enter image URL"
-                className="input input-bordered w-full dark:bg-gray-700 dark:text-white dark:border-gray-600"
-                required
-              />
-            </div>
+      {/* Dropdowns */}
+      {[
+        { label: "Blood Group", name: "bloodGroup", options: bloodGroups },
+        { label: "District", name: "district", options: districts },
+        { label: "Upazila", name: "upazila", options: upazilas },
+      ].map(({ label, name, options }) => (
+        <div key={name}>
+          <label className="block mb-1 font-medium">{label}</label>
+          <select
+            name={name}
+            value={formData[name]}
+            onChange={handleChange}
+            className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-500 transition"
+            required
+          >
+            <option value="">Select {label}</option>
+            {options.map((option) => (
+              <option key={option} value={option}>{option}</option>
+            ))}
+          </select>
+        </div>
+      ))}
 
-            {/* Blood Group */}
-            <div>
-              <label className="block font-medium mb-2 text-gray-800 dark:text-white">Blood Group</label>
-              <select
-                name="bloodGroup"
-                value={formData.bloodGroup}
-                onChange={handleChange}
-                className="select select-bordered w-full dark:bg-gray-700 dark:text-white dark:border-gray-600"
-                required>
-                <option value="">Select Blood Group</option>
-                {bloodGroups.map((group) => (
-                  <option key={group} value={group}>
-                    {group}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* District */}
-            <div>
-              <label className="block font-medium mb-2 text-gray-800 dark:text-white">District</label>
-              <select
-                name="district"
-                value={formData.district}
-                onChange={handleChange}
-                className="select select-bordered w-full dark:bg-gray-700 dark:text-white dark:border-gray-600"
-                required>
-                <option value="">Select District</option>
-                {districts.map((district) => (
-                  <option key={district} value={district}>
-                    {district}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* Upazila */}
-            <div>
-              <label className="block font-medium mb-2 text-gray-800 dark:text-white">Upazila</label>
-              <select
-                name="upazila"
-                value={formData.upazila}
-                onChange={handleChange}
-                className="select select-bordered w-full dark:bg-gray-700 dark:text-white dark:border-gray-600"
-                required>
-                <option value="">Select Upazila</option>
-                {upazilas.map((upazila) => (
-                  <option key={upazila} value={upazila}>
-                    {upazila}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* Preferred Date */}
-            <div>
-              <label className="block font-medium mb-2 text-gray-800 dark:text-white">Preferred Donation Date</label>
-              <input
-                type="date"
-                name="preferredDate"
-                value={formData.preferredDate}
-                onChange={handleChange}
-                className="input input-bordered w-full dark:bg-gray-700 dark:text-white dark:border-gray-600"
-                required
-              />
-            </div>
-
-            {/* Preferred Time */}
-            <div>
-              <label className="block font-medium mb-2 text-gray-800 dark:text-white">Preferred Donation Time</label>
-              <input
-                type="time"
-                name="preferredTime"
-                value={formData.preferredTime}
-                onChange={handleChange}
-                className="input input-bordered w-full dark:bg-gray-700 dark:text-white dark:border-gray-600"
-                required
-              />
-            </div>
-
-            {/* Password */}
-            <div>
-              <label className="block font-medium mb-2 text-gray-800 dark:text-white">Password</label>
-              <input
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                placeholder="Enter your password"
-                className="input input-bordered w-full dark:bg-gray-700 dark:text-white dark:border-gray-600"
-                required
-              />
-            </div>
-
-            {/* Confirm Password */}
-            <div>
-              <label className="block font-medium mb-2 text-gray-800 dark:text-white">Confirm Password</label>
-              <input
-                type="password"
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                placeholder="Confirm your password"
-                className="input input-bordered w-full dark:bg-gray-700 dark:text-white dark:border-gray-600"
-                required
-              />
-            </div>
-
-            {/* Submit Button */}
-            <motion.button
-              type="submit"
-              className="btn btn-primary w-full dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-500"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}>
-              Register
-            </motion.button>
-          </form>
-        </motion.div>
-      </div>
+      <motion.button
+        type="submit"
+        className="w-full py-3 px-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition-all dark:bg-blue-500 dark:hover:bg-blue-600"
+        whileHover={{ scale: 1.03 }}
+        whileTap={{ scale: 0.97 }}
+      >
+        Register
+      </motion.button>
+    </form>
+  </motion.div>
+</div>
     </div>
   );
 };
