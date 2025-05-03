@@ -19,8 +19,8 @@ const BloodDonationReq = () => {
   }, [donationReqs]);
 
   return (
-    <div className="p-5">
-      <h1 className="text-3xl font-bold mb-5 text-center">Pending Donation Requests</h1>
+    <div className="p-5 bg-white dark:bg-gray-900">
+      <h1 className="text-3xl text-gray-800 dark:text-white font-bold mb-5 text-center">Pending Donation Requests</h1>
 
       {/* Loading Spinner */}
       {loading ? (
