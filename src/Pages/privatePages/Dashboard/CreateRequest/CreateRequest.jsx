@@ -106,7 +106,7 @@ const CreateRequest = () => {
                             value={formData.recipientName}
                             onChange={handleInputChange}
                             required
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow appearance-none bg-white border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
                     </div>
 
@@ -120,7 +120,7 @@ const CreateRequest = () => {
                             value={formData.recipientDistrict}
                             onChange={handleInputChange}
                             required
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow bg-white appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         >
                             <option value="">Select District</option>
                             <option value="Dhaka">Dhaka</option>
@@ -140,7 +140,7 @@ const CreateRequest = () => {
                             value={formData.recipientUpazila}
                             onChange={handleInputChange}
                             required
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow appearance-none bg-white border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         >
                             <option value="">Select Upazila</option>
                             <option value="Savar">Savar</option>
@@ -161,7 +161,7 @@ const CreateRequest = () => {
                             value={formData.hospitalName}
                             onChange={handleInputChange}
                             required
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow appearance-none bg-white border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
                     </div>
 
@@ -176,7 +176,7 @@ const CreateRequest = () => {
                             value={formData.fullAddress}
                             onChange={handleInputChange}
                             required
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow appearance-none bg-white border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
                     </div>
 
@@ -190,7 +190,7 @@ const CreateRequest = () => {
                             value={formData.bloodGroup}
                             onChange={handleInputChange}
                             required
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow appearance-none bg-white border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         >
                             <option value="">Select Blood Group</option>
                             <option value="A+">A+</option>
@@ -215,7 +215,7 @@ const CreateRequest = () => {
                             value={formData.donationDate}
                             onChange={handleInputChange}
                             required
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow appearance-none bg-white border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
                     </div>
 
@@ -230,7 +230,7 @@ const CreateRequest = () => {
                             value={formData.donationTime}
                             onChange={handleInputChange}
                             required
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow appearance-none bg-white border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
                     </div>
 
@@ -244,7 +244,7 @@ const CreateRequest = () => {
                             value={formData.requestMessage}
                             onChange={handleInputChange}
                             required
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow appearance-none bg-white border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         ></textarea>
                     </div>
                 </div>

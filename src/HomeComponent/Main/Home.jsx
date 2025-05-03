@@ -173,64 +173,59 @@ const Home = () => {
 
 
 
-            <motion.div
-                className="p-20 bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 text-white text-center rounded-lg shadow-lg"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
-            >
-                <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                    Your Donation Can Make a Lifesaving Difference
-                </h2>
-                <p className="text-lg md:text-xl mb-8">
-                    Blood donation is a simple act that saves lives. By joining our platform, you can connect with others and contribute to a global cause. Every donation counts in our mission to create a healthier world.
-                </p>
+<motion.div
+    className="p-20 bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 text-center rounded-lg shadow-xl"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 1 }}
+>
+    <h2 className="text-4xl md:text-5xl font-bold mb-6">
+        Your Donation Can Make a Lifesaving Difference
+    </h2>
+    <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto">
+        Blood donation is a simple act that saves lives. By joining our platform, you can connect with others and contribute to a global cause. Every donation counts in our mission to create a healthier world.
+    </p>
 
-                <div className="flex justify-center space-x-8 mb-8">
-                    <motion.div
-                        className="text-center"
-                        initial={{ scale: 0.8 }}
-                        animate={{ scale: 1 }}
-                        transition={{ delay: 0.5, duration: 0.7 }}
-                    >
-                        <div className="text-6xl font-semibold mb-2">
-                            <span>5000+</span>
-                        </div>
-                        <p className="text-lg">Donors Registered</p>
-                    </motion.div>
+    <div className="flex flex-wrap justify-center gap-12 mb-8">
+        <motion.div
+            className="text-center"
+            initial={{ scale: 0.8 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.5, duration: 0.7 }}
+        >
+            <div className="text-5xl font-bold text-red-600 mb-2">5000+</div>
+            <p className="text-base font-medium">Donors Registered</p>
+        </motion.div>
 
-                    <motion.div
-                        className="text-center"
-                        initial={{ scale: 0.8 }}
-                        animate={{ scale: 1 }}
-                        transition={{ delay: 0.7, duration: 0.7 }}
-                    >
-                        <div className="text-6xl font-semibold mb-2">
-                            <span>15000+</span>
-                        </div>
-                        <p className="text-lg">Lives Saved</p>
-                    </motion.div>
+        <motion.div
+            className="text-center"
+            initial={{ scale: 0.8 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.7, duration: 0.7 }}
+        >
+            <div className="text-5xl font-bold text-red-600 mb-2">15000+</div>
+            <p className="text-base font-medium">Lives Saved</p>
+        </motion.div>
 
-                    <motion.div
-                        className="text-center"
-                        initial={{ scale: 0.8 }}
-                        animate={{ scale: 1 }}
-                        transition={{ delay: 0.9, duration: 0.7 }}
-                    >
-                        <div className="text-6xl font-semibold mb-2">
-                            <span>20+</span>
-                        </div>
-                        <p className="text-lg">Countries Impacted</p>
-                    </motion.div>
-                </div>
+        <motion.div
+            className="text-center"
+            initial={{ scale: 0.8 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.9, duration: 0.7 }}
+        >
+            <div className="text-5xl font-bold text-red-600 mb-2">20+</div>
+            <p className="text-base font-medium">Countries Impacted</p>
+        </motion.div>
+    </div>
 
-                <NavLink
-                    to="/join"
-                    className="px-12 py-4 bg-white text-purple-600 font-semibold rounded-full shadow-lg hover:bg-gray-100 transition-colors"
-                >
-                    Join the Movement
-                </NavLink>
-            </motion.div>
+    <NavLink
+        to="/join"
+        className="px-8 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-full shadow-md transition duration-300"
+    >
+        Join the Movement
+    </NavLink>
+</motion.div>
+
 
 
             {/* Contact Us Section */}

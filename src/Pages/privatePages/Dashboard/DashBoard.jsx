@@ -15,7 +15,7 @@ const DashBoard = () => {
       </div>
       
       {/* Main Content Area */}
-      <div className="flex-1">
+      <div className="flex-1 bg-white dark:bg-gray-900">
         <Outlet />
       </div>
     </div>
