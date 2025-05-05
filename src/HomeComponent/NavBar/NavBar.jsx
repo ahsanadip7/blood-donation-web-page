@@ -83,34 +83,36 @@ const NavBar = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
                 </svg>
               </button>
-              <ul className="menu menu-sm dropdown-content bg-base-100 text-black font-semibold px-4 rounded-box shadow mt-3 w-52 p-2">
-                {user ? userLinks : guestLinks}
+              <ul className="menu menu-sm dropdown-content mt-3 p-2 shadow rounded-box w-52 
+               bg-white text-black dark:bg-gray-800 dark:text-white font-semibold ">
+                <li>{user ? userLinks : guestLinks}</li>
               </ul>
+
             </div>
             <a className="text-2xl font-bold">Blood Donation Application</a>
             {/* Dark Mode Toggle Button */}
-        <button
-          onClick={toggleTheme}
-          className="p-2 rounded-lg text-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition"
-        >
-          {isDarkMode ? <FaSun className="text-yellow-400" /> : <FaMoon className="text-gray-900" />}
-        </button>
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-lg text-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition"
+            >
+              {isDarkMode ? <FaSun className="text-yellow-400" /> : <FaMoon className="text-gray-900" />}
+            </button>
           </div>
-  
+
           {/* Navigation Links for Desktop */}
           <div className="hidden lg:flex">
             <ul className="menu menu-horizontal px-1 gap-5 font-semibold text-lg">
               {user ? userLinks : guestLinks}
             </ul>
           </div>
-  
+
           {/* User Section */}
           <div className="flex items-center">
             {user ? (
               <div className="flex items-center gap-4">
                 <div className="relative group">
                   <img className="w-10 h-10 rounded-full border-2 border-white cursor-pointer"
-                    src={user.photoURL || "https://via.placeholder.com/40"} 
+                    src={user.photoURL || "https://via.placeholder.com/40"}
                     alt={`${user.displayName || "User"}'s Profile`}
                   />
                   <div className="absolute z-10 w-48 origin-top-right rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden group-hover:block right-0">
@@ -135,14 +137,14 @@ const NavBar = () => {
           </div>
         </nav>
       </div>
-  
+
       {/* Padding to prevent content from being hidden under the fixed navbar */}
       <div className="pt-[80px]">
         {/* Page content goes here */}
       </div>
     </>
   );
-  
+
 };
 
 export default NavBar;
